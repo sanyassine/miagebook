@@ -24,7 +24,7 @@ public class LoginServlet extends AbstractServlet {
     	String login = request.getParameter("login");
     	String password = request.getParameter("password");
     	UserProfile userProfile = new UserProfile(login,password);
-    	request.setAttribute("user", userProfile);
+    	request.setAttribute("username", userProfile.getLogin());
     	goTo(request,response,"/connected.jsp");
     }
     

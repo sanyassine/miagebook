@@ -27,18 +27,12 @@ public class LoginServlet extends AbstractServlet {
     	UserProfile userProfile = new UserProfile(login,password);
     	request.setAttribute("username", userProfile.getLogin());
     	if(login.length() > 0 && password.length() > 0) {
-    		//goTo(request,response,"/connected.jsp");
-    		response.sendRedirect("home");
+    		goTo(request,response,"/home");
+    		//response.sendRedirect("home");
     	}else {
     		//goTo(request,response,"/login.jsp");
     		response.sendRedirect("login");
     	}
-    }
-    
-    @Path("/connected")
-    protected void onConnect(HttpServletRequest request, HttpServletResponse response) 
-    		throws ServletException, IOException {
-    	goTo(request, response, "connected.jsp");
     }
     
 }

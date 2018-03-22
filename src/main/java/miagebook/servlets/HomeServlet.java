@@ -11,7 +11,7 @@ public class HomeServlet extends AbstractServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String username = (String) request.getAttribute("username");
 		if(username != null)
-			response.sendRedirect("home");//goTo(request,response,"/home");
+			goTo(request,response,"/home.jsp");//response.sendRedirect("home");//goTo(request,response,"/home");
 		else
 			response.sendRedirect("login");//goTo(request,response,"/login");
 	}

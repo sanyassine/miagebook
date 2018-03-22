@@ -5,6 +5,7 @@
          version="3.1">
 
 <display-name>Simple Servlet + REST Application</display-name>
+<!-- LOGIN -->
 <servlet>
   <servlet-name>loginServlet</servlet-name>
   <servlet-class>miagebook.servlets.LoginServlet</servlet-class>
@@ -16,4 +17,14 @@
   <url-pattern>/login</url-pattern>
 </servlet-mapping>
 
+<!-- HOME -->
+<servlet>
+	<servlet-name>homeServlet</servlet-name>
+	<servlet-class>miagebook.servlets.HomeServlet</servlet-class>
+</servlet>
+
+<servlet-mapping>
+	<servlet-name>homeServlet</servlet-name>
+	<url-pattern>/home</url-pattern>
+</servlet-mapping>
 </web-app>

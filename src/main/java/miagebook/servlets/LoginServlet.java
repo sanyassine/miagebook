@@ -16,7 +16,8 @@ public class LoginServlet extends AbstractServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) 
         throws ServletException, IOException {
-    	goTo(request, response, "/login.jsp");// methode ecrite dans AbstractServlet pour simplfier
+    	//response.sendRedirect("/login.jsp");
+    	forwardTo(request, response, "/login.jsp");// methode ecrite dans AbstractServlet pour simplfier
     }
     
     @Override
@@ -25,12 +26,10 @@ public class LoginServlet extends AbstractServlet {
     	String login = request.getParameter("login");
     	String password = request.getParameter("password");
     	UserProfile userProfile = new UserProfile(login,password);
-    	request.setAttribute("username", userProfile.getLogin());
+    	request.getSession().setAttribute("user", userProfile);
     	if(login.length() > 0 && password.length() > 0) {
-    		goTo(request,response,"/home");
-    		//response.sendRedirect("home");
+    		forwardTo(request,response,"/home");
     	}else {
-    		//goTo(request,response,"/login.jsp");
     		response.sendRedirect("login");
     	}
     }

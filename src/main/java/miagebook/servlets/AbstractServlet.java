@@ -13,7 +13,7 @@ public abstract class AbstractServlet extends HttpServlet{
 		super();
 	}
 	
-	protected void goTo(HttpServletRequest request, HttpServletResponse response,String jspFilepath) throws ServletException, IOException {
+	protected void forwardTo(HttpServletRequest request, HttpServletResponse response,String jspFilepath) throws ServletException, IOException {
 		this.getServletContext().getRequestDispatcher(jspFilepath).forward(request, response);
 	}
 	

@@ -1,19 +1,27 @@
 package miagebook.servlets;
 
 import java.io.IOException;
+import java.nio.file.attribute.UserPrincipal;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import beans.UserProfile;
+
 public class HomeServlet extends AbstractServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String username = (String) request.getAttribute("username");
-		if(username != null)
-			goTo(request,response,"/home.jsp");//response.sendRedirect("home");//goTo(request,response,"/home");
+		UserProfile user = (UserProfile) request.getSession().getAttribute("user");
+		if(user != null)
+			forwardTo(request,response,"/home.jsp");
 		else
 			response.sendRedirect("login");//goTo(request,response,"/login");
+	}
+	
+	@Override
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+		response.sendRedirect("home");
 	}
 
 }

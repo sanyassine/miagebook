@@ -16,5 +16,15 @@
 		<input type="password" name="password"><br>
 		<input type="submit" value="Submit">
 	</form>
+	
+	<%
+	String errorMessage = (String) request.getSession().getAttribute("error_message");
+	if(errorMessage != null){ %>
+	<h4>
+		<%out.print(errorMessage); %>
+	</h4>
+	
+	<%} 
+	request.getSession().setAttribute("error_message",null);%>
 </body>
 </html>

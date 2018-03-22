@@ -27,11 +27,27 @@ public class LoginServlet extends AbstractServlet {
     	String password = request.getParameter("password");
     	UserProfile userProfile = new UserProfile(login,password);
     	request.getSession().setAttribute("user", userProfile);
-    	if(login.length() > 0 && password.length() > 0) {
+    	if(!isCorrectLogin(login)) {
+    		request.getSession().setAttribute("error_message", "login invalid");
+    		forwardTo(request,response,"/login.jsp");
+    	}else if(!isCorrectPassword(password)) {
+    		request.getSession().setAttribute("error_message", "password invalid");
+    		forwardTo(request,response,"/login.jsp");
+    	}else { 
     		forwardTo(request,response,"/home");
-    	}else {
-    		response.sendRedirect("login");
     	}
     }
     
+    private boolean isCorrectLogin(String login) {
+    	if(login.length() > 0)
+    		return true;
+    	return false;
+    }
+    
+    
+    private boolean isCorrectPassword(String password) {
+    	if(password.length() > 0)
+    		return true;
+    	return false;
+    }
 }

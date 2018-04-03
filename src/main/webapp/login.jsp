@@ -18,6 +18,9 @@
 		<span>lastname</span><br>
 		<input type="text" name="lastname"><br>
 		
+		<span>mail :</span><br>
+		<input type="text" name="email"><br>
+		
 		<span>login :</span> <br>
 		<input type="text" name="login"><br>
 		

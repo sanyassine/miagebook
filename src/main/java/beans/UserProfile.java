@@ -6,6 +6,7 @@ public class UserProfile {
 	private String password;
 	private String firstName;
 	private String lastName;
+	private String email;
 	
 	public UserProfile() {
 	
@@ -33,6 +34,12 @@ public class UserProfile {
 	}
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
+	}
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
 	}
 	
 	

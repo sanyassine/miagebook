@@ -4,9 +4,11 @@ public class UserProfile {
 
 	private String login;
 	private String password;
-	public UserProfile(String login, String password) {
-		this.login = login;
-		this.password = password;
+	private String firstName;
+	private String lastName;
+	
+	public UserProfile() {
+	
 	}
 	public String getLogin() {
 		return login;
@@ -19,6 +21,18 @@ public class UserProfile {
 	}
 	public void setPassword(String password) {
 		this.password = password;
+	}
+	public String getFirstName() {
+		return firstName;
+	}
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+	public String getLastName() {
+		return lastName;
+	}
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
 	}
 	
 	

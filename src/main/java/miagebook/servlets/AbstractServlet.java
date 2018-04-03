@@ -7,14 +7,29 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public abstract class AbstractServlet extends HttpServlet{
+import beans.UserProfile;
 
+public abstract class AbstractServlet extends HttpServlet{
+	private static final String USER = "user";
 	public AbstractServlet() {
 		super();
 	}
 	
 	protected void forwardTo(HttpServletRequest request, HttpServletResponse response,String jspFilepath) throws ServletException, IOException {
 		this.getServletContext().getRequestDispatcher(jspFilepath).forward(request, response);
+	}
+	
+	protected void setUserInSession(HttpServletRequest request,UserProfile user) {
+		request.getSession().setAttribute(USER, user);
+	}
+	
+	protected void removeUserInSession(HttpServletRequest request) {
+		request.getSession().removeAttribute(USER);
+	}
+	
+	protected UserProfile getUserFromSession(HttpServletRequest request) {
+		UserProfile user = (UserProfile) request.getSession().getAttribute(USER);
+		return user;
 	}
 	
 	@Override

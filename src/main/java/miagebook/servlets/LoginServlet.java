@@ -18,8 +18,11 @@ public class LoginServlet extends AbstractServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) 
         throws ServletException, IOException {
-    	//response.sendRedirect("/login.jsp");
-    	forwardTo(request, response, "/login.jsp");// methode ecrite dans AbstractServlet pour simplfier
+    	if(request.getSession().getAttribute("user") != null)
+    		//forwardTo(request,response,"/home");
+    		response.sendRedirect("home");
+    	else
+    		forwardTo(request, response, "/login.jsp");// methode ecrite dans AbstractServlet pour simplfier
     }
     
     @Override
@@ -36,7 +39,7 @@ public class LoginServlet extends AbstractServlet {
     	userProfile.setFirstName(firstName);
     	userProfile.setLastName(lastName);
     	userProfile.setEmail(email);
-    	request.getSession().setAttribute("user", userProfile);
+    	setUserInSession(request, userProfile);
     	List<String> errorMessages = checkData(login,password,firstName,lastName,email);
     	// verifier en base si l'email/login existe deja ou non
     	if(errorMessages.size() != 0) {

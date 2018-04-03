@@ -9,7 +9,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<h1> LOGIN </h1>
+	<h1> Register </h1>
 	
 	<form method="post">
 		<span>firstname</span><br>
@@ -21,6 +21,18 @@
 		<span>mail :</span><br>
 		<input type="text" name="email"><br>
 		
+		<span>login :</span> <br>
+		<input type="text" name="login"><br>
+		
+		<span>password :</span><br>
+		<input type="password" name="password"><br>
+		
+		<input type="submit" value="Submit">
+	</form>
+	
+	<h1> Login </h1>
+	
+	<form method="post" action="connect">
 		<span>login :</span> <br>
 		<input type="text" name="login"><br>
 		

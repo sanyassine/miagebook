@@ -4,27 +4,40 @@
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
          version="3.1">
 
-<display-name>Simple Servlet + REST Application</display-name>
-<!-- LOGIN -->
-<servlet>
-  <servlet-name>loginServlet</servlet-name>
-  <servlet-class>miagebook.servlets.LoginServlet</servlet-class>
-  <load-on-startup>1</load-on-startup>
-</servlet>
+	<display-name>Simple Servlet + REST Application</display-name>
+	
+	<!-- LOGIN -->
+	<servlet>
+	  <servlet-name>loginServlet</servlet-name>
+	  <servlet-class>miagebook.servlets.LoginServlet</servlet-class>
+	  <load-on-startup>1</load-on-startup>
+	</servlet>
+	
+	<servlet-mapping>
+	  <servlet-name>loginServlet</servlet-name>
+	  <url-pattern>/login</url-pattern>
+	</servlet-mapping>
+	
+	<!-- HOME -->
+	<servlet>
+		<servlet-name>homeServlet</servlet-name>
+		<servlet-class>miagebook.servlets.HomeServlet</servlet-class>
+	</servlet>
+	
+	<servlet-mapping>
+		<servlet-name>homeServlet</servlet-name>
+		<url-pattern>/home</url-pattern>
+	</servlet-mapping>
+	
+	<!-- FRIENDS -->
+	<servlet>
+		<servlet-name>friendsServlet</servlet-name>
+		<servlet-class>miagebook.servlets.FriendsServlet</servlet-class>
+	</servlet>
+	
+	<servlet-mapping>
+		<servlet-name>friendsServlet</servlet-name>
+		<url-pattern>/friends</url-pattern>
+	</servlet-mapping>
 
-<servlet-mapping>
-  <servlet-name>loginServlet</servlet-name>
-  <url-pattern>/login</url-pattern>
-</servlet-mapping>
-
-<!-- HOME -->
-<servlet>
-	<servlet-name>homeServlet</servlet-name>
-	<servlet-class>miagebook.servlets.HomeServlet</servlet-class>
-</servlet>
-
-<servlet-mapping>
-	<servlet-name>homeServlet</servlet-name>
-	<url-pattern>/home</url-pattern>
-</servlet-mapping>
 </web-app>

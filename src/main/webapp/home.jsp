@@ -3,7 +3,7 @@
 
 <body>
 	<header>
-		<h1>Miage Book</h1><a href="disconnect">disconnect</a>
+		<h1>Miage Book</h1><a href="disconnect">disconnect</a>&nbsp<a href="friends">friends</a>
 	</header>
 	
 	

@@ -5,6 +5,7 @@
          version="3.1">
 
 	<display-name>Simple Servlet + REST Application</display-name>
+
 	<!-- CONNECT -->
 	<servlet>
 		<servlet-name>connectServlet</servlet-name>
@@ -27,6 +28,7 @@
 		<servlet-name>disconnectServlet</servlet-name>
 	  	<url-pattern>/disconnect</url-pattern>
 	</servlet-mapping>
+
 	<!-- LOGIN -->
 	<servlet>
 	  <servlet-name>loginServlet</servlet-name>
@@ -49,4 +51,16 @@
 		<servlet-name>homeServlet</servlet-name>
 		<url-pattern>/home</url-pattern>
 	</servlet-mapping>
+	
+	<!-- FRIENDS -->
+	<servlet>
+		<servlet-name>friendsServlet</servlet-name>
+		<servlet-class>miagebook.servlets.FriendsServlet</servlet-class>
+	</servlet>
+	
+	<servlet-mapping>
+		<servlet-name>friendsServlet</servlet-name>
+		<url-pattern>/friends</url-pattern>
+	</servlet-mapping>
+	
 </web-app>

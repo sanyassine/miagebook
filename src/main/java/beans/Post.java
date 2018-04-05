@@ -1,8 +1,9 @@
 package beans;
 
+import java.security.Timestamp;
 import java.util.Date;
 
-public class Post {
+public class Post extends Bean{
 	private int idPost;
 	private UserProfile author;
 	private Date date;
@@ -25,6 +26,7 @@ public class Post {
 	}
 	public void setContent(String content) {
 		this.content = content;
+		updateLastChangeDate();
 	}
 	public int getIdPost() {
 		return idPost;
@@ -37,6 +39,7 @@ public class Post {
 	}
 	public void setTitle(String title) {
 		this.title = title;
+		updateLastChangeDate();
 	}
 	@Override
 	public int hashCode() {
@@ -81,6 +84,11 @@ public class Post {
 		} else if (!title.equals(other.title))
 			return false;
 		return true;
+	}
+	@Override
+	public String toString() {
+		return "Post [idPost=" + idPost + ", author=" + author + ", date=" + date + ", title=" + title + ", content="
+				+ content + "]";
 	}
 	
 }

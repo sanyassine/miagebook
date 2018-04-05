@@ -32,7 +32,7 @@
 	
 	<h1> Login </h1>
 	
-	<form method="post" action="connect">
+	<form method="post" action="login">
 		<span>login :</span> <br>
 		<input type="text" name="login"><br>
 		

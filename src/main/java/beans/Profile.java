@@ -2,31 +2,42 @@ package beans;
 
 import java.util.List;
 
-public class Profile {
+public class Profile extends Bean{
 	
 	private String firstName;
 	private String lastName;
 	private String email;
+	private String login;
 	private List<UserProfile> friends;
 	private List<Post> posts;
+	public String getLogin() {
+		return login;
+	}
+	public void setLogin(String login) {
+		this.login = login;
+		updateLastChangeDate();
+	}
 	
 	public String getFirstName() {
 		return firstName;
 	}
 	public void setFirstName(String firstName) {
 		this.firstName = firstName;
+		updateLastChangeDate();
 	}
 	public String getLastName() {
 		return lastName;
 	}
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
+		updateLastChangeDate();
 	}
 	public String getEmail() {
 		return email;
 	}
 	public void setEmail(String email) {
 		this.email = email;
+		updateLastChangeDate();
 	}
 	public List<UserProfile> getFriends() {
 		return friends;
@@ -86,6 +97,11 @@ public class Profile {
 		} else if (!posts.equals(other.posts))
 			return false;
 		return true;
+	}
+	@Override
+	public String toString() {
+		return "Profile [firstName=" + firstName + ", lastName=" + lastName + ", email=" + email + ", login=" + login
+				+ "]";
 	}
 	
 }

@@ -5,11 +5,20 @@ import java.util.Map;
 
 import beans.Post;
 import beans.Profile;
+import utils.sync.thread.PostSyncThread;
+import utils.sync.thread.SyncObjectThread;
 
-public class ProfileMapper {
+public class ProfileMapper extends DataMapper{
 	private Map<String,Profile> map = new HashMap<String,Profile>();
 	public Profile find(String login) {
-		return null;
+		if(map.containsKey(login)) {
+			return map.get(login);
+		}
+		Profile profile = new Profile();
+		//provide from database
+		
+		SyncObjectThread thread = new PostSyncThread(profile, this);
+		return profile;
 	}
 	public boolean insert(Profile profile) {
 		return false;

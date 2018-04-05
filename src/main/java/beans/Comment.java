@@ -2,12 +2,21 @@ package beans;
 
 import java.util.Date;
 
-public class Comment {
+public class Comment extends Bean{
 	private int idComment;
 	private Post post;
 	private Profile author;
 	private Date date;
 	private String title;
+	private String content;
+	
+	public String getContent() {
+		return content;
+	}
+	public void setContent(String content) {
+		this.content = content;
+		updateLastChangeDate();
+	}
 	public int getIdComment() {
 		return idComment;
 	}
@@ -37,6 +46,7 @@ public class Comment {
 	}
 	public void setTitle(String title) {
 		this.title = title;
+		updateLastChangeDate();
 	}
 	@Override
 	public int hashCode() {
@@ -82,5 +92,5 @@ public class Comment {
 			return false;
 		return true;
 	}
-	
+
 }

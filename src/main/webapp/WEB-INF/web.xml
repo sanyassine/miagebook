@@ -5,16 +5,16 @@
 
 	<display-name>Simple Servlet + REST Application</display-name>
 
-	<!-- CONNECT -->
+	<!-- LOGIN -->
 	<servlet>
-		<servlet-name>connectServlet</servlet-name>
-		<servlet-class>miagebook.servlets.ConnectServlet</servlet-class>
+		<servlet-name>loginServlet</servlet-name>
+		<servlet-class>miagebook.servlets.LoginServlet</servlet-class>
 		<load-on-startup>1</load-on-startup>
 	</servlet>
 
 	<servlet-mapping>
-		<servlet-name>connectServlet</servlet-name>
-		<url-pattern>/connect</url-pattern>
+		<servlet-name>loginServlet</servlet-name>
+		<url-pattern>/login</url-pattern>
 	</servlet-mapping>
 	<!-- DISCONNECT -->
 	<servlet>
@@ -28,16 +28,16 @@
 		<url-pattern>/disconnect</url-pattern>
 	</servlet-mapping>
 
-	<!-- LOGIN -->
+	<!-- REGISTER -->
 	<servlet>
-		<servlet-name>loginServlet</servlet-name>
-		<servlet-class>miagebook.servlets.LoginServlet</servlet-class>
+		<servlet-name>registerServlet</servlet-name>
+		<servlet-class>miagebook.servlets.RegisterServlet</servlet-class>
 		<load-on-startup>1</load-on-startup>
 	</servlet>
 
 	<servlet-mapping>
-		<servlet-name>loginServlet</servlet-name>
-		<url-pattern>/login</url-pattern>
+		<servlet-name>registerServlet</servlet-name>
+		<url-pattern>/register</url-pattern>
 	</servlet-mapping>
 
 	<!-- HOME -->

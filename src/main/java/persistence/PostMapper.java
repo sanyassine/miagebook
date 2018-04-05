@@ -4,11 +4,20 @@ import java.util.HashMap;
 import java.util.Map;
 
 import beans.Post;
+import utils.sync.thread.PostSyncThread;
+import utils.sync.thread.SyncObjectThread;
 
-public class PostMapper {
+public class PostMapper extends DataMapper{
 	private Map<Integer,Post> map = new HashMap<Integer,Post>();
 	public Post find(int idPost) {
-		return null;
+		if(map.containsKey(idPost)) {
+			return map.get(idPost);
+		}
+		Post post = new Post();
+		//provide from database
+		
+		SyncObjectThread thread = new PostSyncThread(post, this);
+		return post;
 	}
 	public boolean insert(Post post) {
 		return false;

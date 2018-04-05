@@ -1,4 +1,5 @@
 <%@ page import="beans.*" %>
+<%@ page import="java.util.List" %>
 <html>
 
 <body>
@@ -8,6 +9,7 @@
 	
 	
 	<%
+		List<Post> posts = (List)request.getAttribute("posts");
 		UserProfile user = (UserProfile) request.getSession().getAttribute("user");
 		String login = user.getLogin();
 		String fName = user.getFirstName();
@@ -17,6 +19,10 @@
 	<h2>Welcome <%out.print(fName+" "+lName); %>, you are connected as : <% out.print(login); out.print(" ("+email+")"); %></h2>
 	
 	<h2>List of Posts :</h2>
+	<%for(Post p : posts){
+		out.print(p);%> </br><%
+		
+	} %>
 
 </body>
 </html>

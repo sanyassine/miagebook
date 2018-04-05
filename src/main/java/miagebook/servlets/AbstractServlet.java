@@ -8,9 +8,15 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import beans.UserProfile;
+import persistence.CommentMapper;
+import persistence.PostMapper;
+import persistence.ProfileMapper;
 
 public abstract class AbstractServlet extends HttpServlet{
-	private static final String USER = "user";
+	protected static final String USER = "user";
+	protected static final CommentMapper commentMapper = new CommentMapper();
+	protected static final PostMapper postMapper = new PostMapper();
+	protected static final ProfileMapper profileMapper = new ProfileMapper();
 	public AbstractServlet() {
 		super();
 	}

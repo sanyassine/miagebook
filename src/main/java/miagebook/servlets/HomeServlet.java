@@ -1,7 +1,6 @@
 package miagebook.servlets;
 
 import java.io.IOException;
-import java.nio.file.attribute.UserPrincipal;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -13,8 +12,9 @@ public class HomeServlet extends AbstractServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		UserProfile user = (UserProfile) request.getSession().getAttribute("user");
-		if(user != null)
+		if(user != null) {
 			forwardTo(request,response,"/home.jsp");
+		}
 		else
 			response.sendRedirect("login");//goTo(request,response,"/login");
 	}

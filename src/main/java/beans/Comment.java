@@ -2,16 +2,28 @@ package beans;
 
 import java.util.Date;
 
-public class Post {
-	private int idPost;
-	private UserProfile author;
+public class Comment {
+	private int idComment;
+	private Post post;
+	private Profile author;
 	private Date date;
 	private String title;
-	private String content;
-	public UserProfile getAuthor() {
+	public int getIdComment() {
+		return idComment;
+	}
+	public void setIdComment(int idComment) {
+		this.idComment = idComment;
+	}
+	public Post getPost() {
+		return post;
+	}
+	public void setPost(Post post) {
+		this.post = post;
+	}
+	public Profile getAuthor() {
 		return author;
 	}
-	public void setAuthor(UserProfile author) {
+	public void setAuthor(Profile author) {
 		this.author = author;
 	}
 	public Date getDate() {
@@ -19,18 +31,6 @@ public class Post {
 	}
 	public void setDate(Date date) {
 		this.date = date;
-	}
-	public String getContent() {
-		return content;
-	}
-	public void setContent(String content) {
-		this.content = content;
-	}
-	public int getIdPost() {
-		return idPost;
-	}
-	public void setIdPost(int idPost) {
-		this.idPost = idPost;
 	}
 	public String getTitle() {
 		return title;
@@ -43,9 +43,9 @@ public class Post {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((author == null) ? 0 : author.hashCode());
-		result = prime * result + ((content == null) ? 0 : content.hashCode());
 		result = prime * result + ((date == null) ? 0 : date.hashCode());
-		result = prime * result + idPost;
+		result = prime * result + idComment;
+		result = prime * result + ((post == null) ? 0 : post.hashCode());
 		result = prime * result + ((title == null) ? 0 : title.hashCode());
 		return result;
 	}
@@ -57,23 +57,23 @@ public class Post {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Post other = (Post) obj;
+		Comment other = (Comment) obj;
 		if (author == null) {
 			if (other.author != null)
 				return false;
 		} else if (!author.equals(other.author))
-			return false;
-		if (content == null) {
-			if (other.content != null)
-				return false;
-		} else if (!content.equals(other.content))
 			return false;
 		if (date == null) {
 			if (other.date != null)
 				return false;
 		} else if (!date.equals(other.date))
 			return false;
-		if (idPost != other.idPost)
+		if (idComment != other.idComment)
+			return false;
+		if (post == null) {
+			if (other.post != null)
+				return false;
+		} else if (!post.equals(other.post))
 			return false;
 		if (title == null) {
 			if (other.title != null)

@@ -1,0 +1,4 @@
+<!ELEMENT data (auth)>
+<!ELEMENT auth (#PCDATA)>
+<!ATTLIST auth login CDATA  #REQUIRED>
+<!ATTLIST auth password CDATA  #REQUIRED>

@@ -1,18 +1,21 @@
 package miagebook.servlets;
 
 import java.io.IOException;
+import java.sql.Connection;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import beans.UserProfile;
+import persistence.connection.Oracle;
 
 public class LoginServlet extends AbstractServlet {
 	
 	@Override 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) 
             throws ServletException, IOException{
+		Connection c = Oracle.getConnection();
 		forwardTo(request, response, "/login.jsp");
 	}
 	@Override

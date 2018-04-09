@@ -10,6 +10,10 @@ import utils.sync.thread.SyncObjectThread;
 
 public class ProfileMapper extends DataMapper{
 	private Map<String,Profile> map = new HashMap<String,Profile>();
+	
+	public ProfileMapper() {
+		super();
+	}
 	public Profile find(String login) {
 		if(map.containsKey(login)) {
 			return map.get(login);

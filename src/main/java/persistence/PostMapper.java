@@ -9,6 +9,10 @@ import utils.sync.thread.SyncObjectThread;
 
 public class PostMapper extends DataMapper{
 	private Map<Integer,Post> map = new HashMap<Integer,Post>();
+	
+	public PostMapper() {
+		super();
+	}
 	public Post find(int idPost) {
 		if(map.containsKey(idPost)) {
 			return map.get(idPost);

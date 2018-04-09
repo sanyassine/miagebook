@@ -4,44 +4,16 @@
 <%@ page import="java.util.List" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
-</head>
-<body>
-	<h1> Register </h1>
-	
-	<form method="post">
-		<span>firstname</span><br>
-		<input type="text" name="firstname"><br>
-		
-		<span>lastname</span><br>
-		<input type="text" name="lastname"><br>
-		
-		<span>mail :</span><br>
-		<input type="text" name="email"><br>
-		
-		<span>login :</span> <br>
-		<input type="text" name="login"><br>
-		
-		<span>password :</span><br>
-		<input type="password" name="password"><br>
-		
-		<input type="submit" value="Submit">
-	</form>
-	
-	<h1> Login </h1>
-	
-	<form method="post" action="login">
-		<span>login :</span> <br>
-		<input type="text" name="login"><br>
-		
-		<span>password :</span><br>
-		<input type="password" name="password"><br>
-		
-		<input type="submit" value="Submit">
-	</form>
-	
+	<head>
+		<link href="css/bootstrap.min.css" rel="stylesheet">
+		<link href="css/login.css" rel="stylesheet">
+		<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+		<script
+			src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+		<!-- Include all compiled plugins (below), or include individual files as needed -->
+		<script src="js/bootstrap.min.js"></script>
+	</head>
+<body class="text-center">
 	<%
 	List<String> errorMessage = (List) request.getSession().getAttribute("error_message");
 	if(errorMessage != null){
@@ -53,5 +25,18 @@
 	<%	} 
 	}
 	request.getSession().setAttribute("error_message",null);%>
+	
+	<form class="form-signin" action="login" method="post">
+      <img class="mb-4" src="img/M.gif" alt="" width="72" height="72">
+      <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
+      <label for="input" class="sr-only">Login</label>
+      <input type="text" id="inputEmail" name="login" class="form-control" placeholder="Login" required autofocus>
+      <label for="inputPassword" class="sr-only">Password</label>
+      <input type="password" id="inputPassword" name="password" class="form-control" placeholder="Password" required>
+      <div class="checkbox mb-3">
+        <a href="register">Not registered ?</a>
+      </div>
+      <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+    </form>
 </body>
 </html>

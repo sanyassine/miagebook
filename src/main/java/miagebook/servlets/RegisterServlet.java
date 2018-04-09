@@ -22,7 +22,7 @@ public class RegisterServlet extends AbstractServlet {
     		//forwardTo(request,response,"/home");
     		response.sendRedirect("home");
     	else
-    		forwardTo(request, response, "/login.jsp");// methode ecrite dans AbstractServlet pour simplfier
+    		forwardTo(request, response, "/inscription.jsp");// methode ecrite dans AbstractServlet pour simplfier
     }
     
     @Override

@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import beans.Post;
 import beans.UserProfile;
+import persistence.PostMapper;
 import persistence.connection.Oracle;
 
 public class HomeServlet extends AbstractServlet {
@@ -22,13 +23,16 @@ public class HomeServlet extends AbstractServlet {
 			// TEST
 			Connection c = Oracle.getConnection();
 			List<Post> posts = new ArrayList<>();
-			for(int i = 0 ; i < 10 ; i++) {
+			PostMapper mapper = new PostMapper();
+			Post post = mapper.find(1);
+			posts.add(post);
+			/*for(int i = 0 ; i < 10 ; i++) {
 				Post p = new Post();
 				p.setContent(c.toString());
 				p.setDate(new Date());
 				p.setTitle("TiTLEE");
 				posts.add(p);
-			}
+			}*/
 			request.setAttribute("posts", posts);
 			forwardTo(request,response,"/home.jsp");
 		}

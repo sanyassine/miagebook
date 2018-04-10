@@ -6,6 +6,7 @@ import java.util.Date;
 public class Post extends Bean{
 	private int idPost;
 	private UserProfile author;
+	private String authorLogin;
 	private Date date;
 	private String title;
 	private String content;
@@ -40,6 +41,13 @@ public class Post extends Bean{
 	public void setTitle(String title) {
 		this.title = title;
 		updateLastChangeDate();
+	}
+	
+	public String getAuthorLogin() {
+		return authorLogin;
+	}
+	public void setAuthorLogin(String authorLogin) {
+		this.authorLogin = authorLogin;
 	}
 	@Override
 	public int hashCode() {

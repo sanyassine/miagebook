@@ -35,7 +35,7 @@ public class PostMapper extends DataMapper{
 			providePostsStatement.setInt(1, idPost);
 			ResultSet rs = providePostsStatement.executeQuery();
 			if(rs.next()) {
-				post = new Post()
+				post = new Post();
 				String loginAuthor = rs.getString("login_author");
 				Timestamp time = rs.getTimestamp("date_post");
 				String content = rs.getString("content");

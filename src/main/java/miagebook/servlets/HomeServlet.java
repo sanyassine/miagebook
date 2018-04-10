@@ -22,17 +22,8 @@ public class HomeServlet extends AbstractServlet {
 		if(user != null) {
 			// TEST
 			Connection c = Oracle.getConnection();
-			List<Post> posts = new ArrayList<>();
 			PostMapper mapper = new PostMapper();
-			Post post = mapper.find(1);
-			posts.add(post);
-			/*for(int i = 0 ; i < 10 ; i++) {
-				Post p = new Post();
-				p.setContent(c.toString());
-				p.setDate(new Date());
-				p.setTitle("TiTLEE");
-				posts.add(p);
-			}*/
+			List<Post> posts = mapper.findPostsByLogin(user.getLogin());
 			request.setAttribute("posts", posts);
 			forwardTo(request,response,"/home.jsp");
 		}

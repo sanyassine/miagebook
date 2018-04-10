@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	<%@ page import="java.util.List" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 	<head>
@@ -59,5 +60,12 @@
 		
 		<button type="submit" class="btn btn-primary">Submit</button>
 	</form>
+	
+	<%List<String> errorMessages = (List<String>)request.getSession().getAttribute("error_message"); %>
+	
+	<% if(errorMessages != null){
+		for(String msg : errorMessages){
+		out.print(msg);
+	}errorMessages.clear();}%>
 </body>
 </html>

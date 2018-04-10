@@ -55,6 +55,8 @@
 		out.print(" (" + email + ")");
 	%>
 	</h2>
+	
+	<button type="button" class="btn btn-primary">New Post</button>
 
 	<h2>List of Posts :</h2>
 	

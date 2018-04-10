@@ -15,7 +15,6 @@ public class LoginServlet extends AbstractServlet {
 	@Override 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) 
             throws ServletException, IOException{
-		Connection c = Oracle.getConnection();
 		forwardTo(request, response, "/login.jsp");
 	}
 	@Override

@@ -1,6 +1,7 @@
 package miagebook.servlets;
 
 import java.io.IOException;
+import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -11,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import beans.Post;
 import beans.UserProfile;
+import persistence.connection.Oracle;
 
 public class HomeServlet extends AbstractServlet {
 	
@@ -18,10 +20,11 @@ public class HomeServlet extends AbstractServlet {
 		UserProfile user = (UserProfile) request.getSession().getAttribute("user");
 		if(user != null) {
 			// TEST
+			Connection c = Oracle.getConnection();
 			List<Post> posts = new ArrayList<>();
 			for(int i = 0 ; i < 10 ; i++) {
 				Post p = new Post();
-				p.setContent("CONTNENNT");
+				p.setContent(c.toString());
 				p.setDate(new Date());
 				p.setTitle("TiTLEE");
 				posts.add(p);
@@ -30,7 +33,7 @@ public class HomeServlet extends AbstractServlet {
 			forwardTo(request,response,"/home.jsp");
 		}
 		else
-			response.sendRedirect("login");//goTo(request,response,"/login");
+			response.sendRedirect("login");
 	}
 	
 	@Override

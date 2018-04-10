@@ -34,7 +34,9 @@ public class XMLAuthReader {
 	public Map<String,String> getXMLData(String filename, String nodeName, String[] attributes) throws SAXException, IOException, ParserConfigurationException{
 		DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
 		DocumentBuilder builder = factory.newDocumentBuilder();
-		Document doc = builder.parse(new File(filename));
+		File file = new File(filename);
+		String abs = file.getAbsolutePath();
+		Document doc = builder.parse(file);
 		Element docElement = doc.getDocumentElement();
 		Map<String, String> res = new HashMap<String, String>();
 		NodeList nl =  docElement.getElementsByTagName(nodeName);

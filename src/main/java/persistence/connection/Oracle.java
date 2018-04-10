@@ -5,24 +5,28 @@ import persistence.connection.utils.AuthentificationProvider;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class Oracle {
     private static Connection c; 
     
     private Oracle() {
-    	AuthentificationData ad = AuthentificationProvider.getInstance().get();
-    	if(ad != null) {
+    	//AuthentificationData ad = AuthentificationProvider.getInstance().get();
+    	//if(ad != null) {
 	        try{
 	        Class.forName("oracle.jdbc.driver.OracleDriver").newInstance(); 
-	        c = DriverManager.getConnection("jdbc:oracle:thin:@oracle.fil.univ-lille1.fr:1521:filora",ad.getLogin(),ad.getPassword());
+	        c = DriverManager.getConnection("jdbc:oracle:thin:@oracle.fil.univ-lille1.fr:1521:filora",
+	        		null,null); // put login and password
 	        c.setAutoCommit(false);
 	        }
 	        catch(Exception e){
+	        	Logger.getGlobal().info(e.getMessage());
 	        	System.out.println(e.getMessage());
 	            System.out.println("Fail connection");  
 	        };
 	        System.out.println("Connection success");
-    	}
+    	//}
     }
     
     /**

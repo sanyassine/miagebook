@@ -8,7 +8,11 @@ import java.util.Map;
 
 public class AuthentificationProvider {
 	
-	private String authentificationFilename = "connection.xml";
+	private static String authentificationFilename = null;
+	
+	public static void setAuthFile(String path) {
+		authentificationFilename = path;
+	}
 	
 	private static AuthentificationProvider INSTANCE;
 	private AuthentificationProvider() {}
@@ -49,18 +53,20 @@ public class AuthentificationProvider {
 	 * @throws IOException
 	 */
 	private AuthentificationData provideFromFile() throws IOException {
-		XMLAuthReader xmlAuthReader = XMLAuthReader.getInstance();
-		String[] attributes = {"login","password"};
-		Map<String, String> map;
-		try {
-			map = xmlAuthReader.getXMLData(authentificationFilename, "auth", attributes);
-		} catch (SAXException e) {
-			throw new IOException("problem when reading xml");
-		} catch (ParserConfigurationException e) {
-			throw new IOException("problem when reading xml (parsing)");
-		}
-		if(!map.containsKey("login") || !map.containsKey("password"))
-			throw new IOException("login and password attributes are needed");
-		return new AuthentificationData(map.get("login"), map.get("password"));
+		if(authentificationFilename != null) {
+			XMLAuthReader xmlAuthReader = XMLAuthReader.getInstance();
+			String[] attributes = {"login","password"};
+			Map<String, String> map;
+			try {
+				map = xmlAuthReader.getXMLData(authentificationFilename, "auth", attributes);
+			} catch (SAXException e) {
+				throw new IOException("problem when reading xml");
+			} catch (ParserConfigurationException e) {
+				throw new IOException("problem when reading xml (parsing)");
+			}
+			if(!map.containsKey("login") || !map.containsKey("password"))
+				throw new IOException("login and password attributes are needed");
+			return new AuthentificationData(map.get("login"), map.get("password"));
+		}return null;
 	}
 }

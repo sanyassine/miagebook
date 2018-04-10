@@ -22,11 +22,29 @@ public class ProfileMapper extends DataMapper{
 		if(map.containsKey(login)) {
 			return map.get(login);
 		}
-		Profile profile = new Profile();
-		//provide from database
+		UserProfile user = null;
+		try {
+			if (authentificateStatement == null) {
+				authentificateStatement = c.prepareCall("select login,password,firstname,lastname,email from userprofiles"
+						+" where login=?");
+			}
+			authentificateStatement.setString(1, login);
+			ResultSet rs = authentificateStatement.executeQuery();
+			if(rs.next()) {
+				String firstname = rs.getString("firstname");
+				String lastname  = rs.getString("lastname");
+				String email     = rs.getString("email");
+				user = new UserProfile();
+				user.setEmail(email);user.setFirstName(firstname);
+				user.setLastName(lastname);user.setLogin(login);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
-		SyncObjectThread thread = new PostSyncThread(profile, this);
-		return profile;
+		SyncObjectThread thread = new PostSyncThread(user, this);
+		return user;
 	}
 	
 	CallableStatement insertProfileStatement;

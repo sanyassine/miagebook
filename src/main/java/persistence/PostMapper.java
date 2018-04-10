@@ -8,8 +8,10 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 
 import beans.Post;
+import beans.Profile;
 import utils.sync.thread.PostSyncThread;
 import utils.sync.thread.SyncObjectThread;
 
@@ -80,12 +82,15 @@ public class PostMapper extends DataMapper{
 				String content = rs.getString("content");
 				String title = rs.getString("title");
 				int idPost = rs.getInt("id_post");
+				ProfileMapper profileMapper = new ProfileMapper();
+				Profile profile = profileMapper.find(loginAuthor);
 				post.setAuthorLogin(loginAuthor);
 				post.setDate(time);
 				post.setContent(content);
 				post.setIdPost(idPost);
 				post.setTitle(title);
 				post.setIdPost(idPost);
+				post.setAuthor(profile);
 				posts.add(post);
 			}
 		} catch (SQLException e) {
@@ -94,8 +99,33 @@ public class PostMapper extends DataMapper{
 		}
 		return posts;
 	}
+	
+	CallableStatement insertPostStatement;
+
 	public boolean insert(Post post) {
-		return false;
+		boolean res = false;
+		try {
+			if (insertPostStatement == null) {
+				insertPostStatement = c.prepareCall(
+						"insert into posts (id_post,login_author,date_post,title,content) values(?,?,?,?,?)");
+			}
+			int id = new Random().nextInt();
+			insertPostStatement.setInt(1, id);
+			insertPostStatement.setString(2, post.getAuthorLogin());
+			insertPostStatement.setDate(3, new java.sql.Date(post.getDate().getTime()));
+			insertPostStatement.setString(4, post.getTitle());
+			insertPostStatement.setString(5, post.getContent());
+			
+			insertPostStatement.execute();
+			c.commit();
+			res = true;
+			post.setIdPost(id);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			res = false;
+		}
+		return res;
 	}
 	public boolean updateContent(Post post) {
 		return false;

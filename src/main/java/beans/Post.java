@@ -5,15 +5,15 @@ import java.util.Date;
 
 public class Post extends Bean{
 	private int idPost;
-	private UserProfile author;
+	private Profile author;
 	private String authorLogin;
 	private Date date;
 	private String title;
 	private String content;
-	public UserProfile getAuthor() {
+	public Profile getAuthor() {
 		return author;
 	}
-	public void setAuthor(UserProfile author) {
+	public void setAuthor(Profile author) {
 		this.author = author;
 	}
 	public Date getDate() {

@@ -55,13 +55,21 @@
 		out.print(" (" + email + ")");
 	%>
 	</h2>
-	
-	<button type="button" class="btn btn-primary">New Post</button>
+	<form method="post" action="home">
+		<div class="form-group">
+			<label>Title of yout post</label>
+			<textarea class="form-control" id="exampleFormControlTextarea1" rows="1" name="titlePost"></textarea>
+		    <label for="exampleFormControlTextarea1">Write your post here</label>
+		    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="contentPost"></textarea>
+		    <button type="submit" value="submit" class="btn btn-primary">New Post</button>
+	  	</div>
+  </form>
 
 	<h2>List of Posts :</h2>
 	
 	<div class="list-group">
 	<%
+		if(posts != null){
 		for (Post p : posts) {
 			%>
 	
@@ -71,9 +79,10 @@
 		      <small class="text-muted"><% out.print(p.getDate()); %></small>
 		    </div>
 		    <p class="mb-1"><%out.print(p.getContent()); %></p>
-		    <small class="text-muted"><%out.print(p.getAuthor()); %></small>
+		    <small class="text-muted"><%out.print(p.getAuthorLogin()); %></small>
 		  </a>
   <%
+		}
 		}
 	%>
   

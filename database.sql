@@ -37,3 +37,10 @@ create table friends(
 	constraint friend_friends_fk foreign key (login_friend) references userprofiles(login),
 	constraint user_friends_fk foreign key (login_user) references userprofiles(login)
 );
+
+insert into userprofiles (login) values ('Assim');
+insert into posts (id_post,login_author,title,content) values(1,'Assim','Mon Title','Content Content');
+
+select id_post,login_author,date_post,content,title from posts;
+select * from userprofiles;
+delete from userprofiles;

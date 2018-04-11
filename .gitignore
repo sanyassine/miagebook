@@ -1,3 +1,6 @@
 /target/
 /src/main/java/persistence/connection/Oracle.java
 connection.xml
+.classpath
+.project
+.settings

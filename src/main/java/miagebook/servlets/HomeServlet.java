@@ -29,20 +29,29 @@ public class HomeServlet extends AbstractServlet {
 	
 	@Override // on login
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
-		String content = (String) request.getParameter("contentPost");
-		String title   = (String) request.getParameter("titlePost");
-		if(content != null && title != null) {
+		String contentPost = (String) request.getParameter("contentPost");
+		String titlePost   = (String) request.getParameter("titlePost");
+		String contentComment = (String) request.getParameter("contentComment");
+		int idPostComment;  
+		try {
+			idPostComment     = Integer.parseInt(request.getParameter("idpostcomment")) ;
+		}catch(NumberFormatException e) {
+			idPostComment = -1;
+		}
+		if(contentPost != null && titlePost != null) {
 			UserProfile user = (UserProfile) request.getSession().getAttribute("user");
 			if(user != null) {
 				Post post = new Post();
 				post.setAuthor(user);
 				post.setAuthorLogin(user.getLogin());
-				post.setContent(content);
+				post.setContent(contentPost);
 				post.setDate(new Timestamp(new Date().getTime()));
-				post.setTitle(title);
+				post.setTitle(titlePost);
 				PostMapper mapper = new PostMapper();
 				mapper.insert(post);
 			}
+		}else if(contentComment != null && idPostComment != -1) {
+			System.out.println("id :"+idPostComment+" content: "+contentComment);
 		}
 		response.sendRedirect("home");
 	}

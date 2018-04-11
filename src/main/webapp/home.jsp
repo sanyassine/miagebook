@@ -58,9 +58,9 @@
 	<form method="post" action="home">
 		<div class="form-group">
 			<label>Title of yout post</label>
-			<textarea class="form-control" id="exampleFormControlTextarea1" rows="1" name="titlePost"></textarea>
+			<textarea placeholder="Title" class="form-control" id="exampleFormControlTextarea1" rows="1" name="titlePost"></textarea>
 		    <label for="exampleFormControlTextarea1">Write your post here</label>
-		    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="contentPost"></textarea>
+		    <textarea placeholder="Content" class="form-control" id="exampleFormControlTextarea1" rows="3" name="contentPost"></textarea>
 		    <button type="submit" value="submit" class="btn btn-primary">New Post</button>
 	  	</div>
   </form>
@@ -79,7 +79,16 @@
 		      <small class="text-muted"><% out.print(p.getDate()); %></small>
 		    </div>
 		    <p class="mb-1"><%out.print(p.getContent()); %></p>
-		    <small class="text-muted"><%out.print(p.getAuthorLogin()); %></small>
+		    <small class="text-muted"><%out.print(p.getAuthorLogin()); %></small></br>
+		    <form method="post" action="home">
+				<div class="form-group">
+					<label>Title of yout post</label>
+					<input class="invisible" type="text" name="idpostcomment" value="<% out.print(p.getIdPost()); %>">
+					<textarea class="form-control" rows="1" name="contentComment" placeholder="write your comment here"></textarea>
+				    <button type="submit" value="submit" class="btn btn-primary">Send Comment</button>
+			  	</div>
+  			</form>
+		    
 		  </a>
   <%
 		}

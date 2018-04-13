@@ -6,10 +6,24 @@ public class Comment extends Bean{
 	private int idComment;
 	private Post post;
 	private Profile author;
+	private String authorLogin;
 	private Date date;
 	private String title;
 	private String content;
+	private int idPost;
 	
+	public String getAuthorLogin() {
+		return authorLogin;
+	}
+	public void setAuthorLogin(String authorLogin) {
+		this.authorLogin = authorLogin;
+	}
+	public int getIdPost() {
+		return idPost;
+	}
+	public void setIdPost(int idPost) {
+		this.idPost = idPost;
+	}
 	public String getContent() {
 		return content;
 	}

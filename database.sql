@@ -26,6 +26,7 @@ create table comments(
     id_post integer,
     author_login varchar2(255),
     content varchar2(255),
+    date_comment timestamp,
     constraint comments_pk primary key(id_comments),
     constraint author_comments_fk foreign key (author_login) references userprofiles(login)
 );
@@ -44,3 +45,5 @@ insert into posts (id_post,login_author,title,content) values(1,'Assim','Mon Tit
 select id_post,login_author,date_post,content,title from posts;
 select * from userprofiles;
 delete from userprofiles;
+
+select * from comments;

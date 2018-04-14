@@ -49,3 +49,5 @@ insert into friends(login_user,login_friend) values('sasa','assim');
 delete from userprofiles;
 
 select * from comments;
+
+select * from friends;

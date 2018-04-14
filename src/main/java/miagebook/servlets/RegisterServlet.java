@@ -40,14 +40,14 @@ public class RegisterServlet extends AbstractServlet {
     	userProfile.setFirstName(firstName);
     	userProfile.setLastName(lastName);
     	userProfile.setEmail(email);
-    	ProfileMapper mapper = new ProfileMapper();
+    	
     	setUserInSession(request, userProfile);
     	List<String> errorMessages = checkData(login,password,firstName,lastName,email);
     	// verifier en base si l'email/login existe deja ou non
     	if(errorMessages.size() != 0) {
     		request.getSession().setAttribute("error_message", errorMessages);
     		forwardTo(request,response,"/inscription.jsp");
-    	}else if(mapper.insert(userProfile)){
+    	}else if(profileMapper.insert(userProfile)){
     		forwardTo(request,response,"/home");
     	}else {
     		errorMessages.add("insertion error");

@@ -51,7 +51,7 @@
 		<url-pattern>/home</url-pattern>
 	</servlet-mapping>
 
-	<!-- FRIENDS -->
+	<!-- MYPROFILE -->
 	<servlet>
 		<servlet-name>myprofileServlet</servlet-name>
 		<servlet-class>miagebook.servlets.MyProfileServlet</servlet-class>
@@ -60,6 +60,17 @@
 	<servlet-mapping>
 		<servlet-name>myprofileServlet</servlet-name>
 		<url-pattern>/myprofile</url-pattern>
+	</servlet-mapping>
+	
+	<!-- USERS -->
+	<servlet>
+		<servlet-name>usersServlet</servlet-name>
+		<servlet-class>miagebook.servlets.UsersServlet</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>usersServlet</servlet-name>
+		<url-pattern>/users</url-pattern>
 	</servlet-mapping>
 
 </web-app>

@@ -18,20 +18,12 @@ import persistence.CommentMapper;
 import persistence.PostMapper;
 
 public class HomeServlet extends AbstractServlet {
-	private PostMapper postMapper       = new PostMapper();
-	private CommentMapper commentMapper = new CommentMapper();
-	
+
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		UserProfile user = getUserFromSession(request);
 		if(user != null) {
-			PostMapper mapper = new PostMapper();
-			List<Post> posts = mapper.findPostsByLogin(user.getLogin());
-			Map<Post, List<Comment>> commentsByPost = new HashMap<>();
-			for(Post post : posts) {
-				commentsByPost.put(post, commentMapper.findCommentsByPost(post));
-			}
+			List<Post> posts = postMapper.findPostsByLogin(user.getLogin());
 			request.setAttribute("posts", posts);
-			request.setAttribute("commentsByPost", commentsByPost);
 			forwardTo(request,response,"/home.jsp");
 		}
 		else
@@ -56,7 +48,6 @@ public class HomeServlet extends AbstractServlet {
 				postMapper.insert(post);
 			} 
 		}else if(contentComment != null && idPostComment != -1 && contentComment.length() > 0 ) { // new comment added
-			commentMapper = new CommentMapper();
 			Comment comment = new Comment();
 			comment.setAuthorLogin(user.getLogin());
 			comment.setContent(contentComment);
@@ -80,7 +71,6 @@ public class HomeServlet extends AbstractServlet {
 			post.setContent(content);
 			post.setDate(new Timestamp(new Date().getTime()));
 			post.setTitle(title);
-			postMapper = new PostMapper();
 			postMapper.insert(post);
 			forwardTo(request,response,"/home.jsp");
 		}

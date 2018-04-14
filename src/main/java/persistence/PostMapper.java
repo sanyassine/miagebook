@@ -10,15 +10,23 @@ import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
+import beans.Comment;
 import beans.Post;
 import beans.Profile;
 import utils.sync.thread.PostSyncThread;
 import utils.sync.thread.SyncObjectThread;
 
 public class PostMapper extends DataMapper{
+	private static PostMapper INSTANCE;
+	public static PostMapper getInstance() {
+		if(INSTANCE == null){
+			INSTANCE = new PostMapper();
+		}
+		return INSTANCE;
+	}
 	private Map<Integer,Post> map = new HashMap<Integer,Post>();
 	
-	public PostMapper() {
+	private PostMapper() {
 		super();
 	}
 	
@@ -49,6 +57,10 @@ public class PostMapper extends DataMapper{
 				post.setContent(content);
 				post.setIdPost(idPost);
 				post.setTitle(title);
+				map.put(idPost, post);
+				List<Comment> comments = CommentMapper.getInstance().findCommentsByPost(post);
+				post.setComment(comments);
+				post.setInserted(true);
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -76,20 +88,11 @@ public class PostMapper extends DataMapper{
 			providePostsByLoginStatement.setString(1, login);
 			ResultSet rs = providePostsByLoginStatement.executeQuery();
 			while(rs.next()) {
-				Post post = new Post();
 				String loginAuthor = rs.getString("login_author");
-				Timestamp time = rs.getTimestamp("date_post");
-				String content = rs.getString("content");
-				String title = rs.getString("title");
 				int idPost = rs.getInt("id_post");
-				ProfileMapper profileMapper = new ProfileMapper();
+				ProfileMapper profileMapper = ProfileMapper.getInstance();
 				Profile profile = profileMapper.find(loginAuthor);
-				post.setAuthorLogin(loginAuthor);
-				post.setDate(time);
-				post.setContent(content);
-				post.setIdPost(idPost);
-				post.setTitle(title);
-				post.setIdPost(idPost);
+				Post post = find(idPost);
 				post.setAuthor(profile);
 				posts.add(post);
 			}
@@ -120,6 +123,8 @@ public class PostMapper extends DataMapper{
 			c.commit();
 			res = true;
 			post.setIdPost(id);
+			map.put(id, post);
+			post.setInserted(true);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

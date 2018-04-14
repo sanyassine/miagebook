@@ -13,7 +13,7 @@
 <body>
 	<%@include  file="header_connected.html" %>
     <main role="main" class="container">
-	<h1>My profil</h1>
+	<h1>My profile</h1>
 	
 	
 	<%
@@ -28,11 +28,15 @@
 	<h3>First name: <% out.print(fName); %></h3>
 	<h3>Last name:  <% out.print(lName);%></h3>
 	<h3>My friends: </h3>
+	
+	<ul class="list-group">
+		  
 	<%
 		for(Profile p : friends){
-			out.print(p); %> </br><%
+			%><li class="list-group-item"><%out.print(p.getLogin()); %></li><%
 		}
 	%>
+	</ul>
 	</main>
 </body>
 </html>

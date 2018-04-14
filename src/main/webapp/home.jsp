@@ -21,7 +21,6 @@
 
 	<%
 		List<Post> posts = (List) request.getAttribute("posts");
-		Map<Post,List<Comment>> commentByPost = (Map) request.getAttribute("commentsByPost");
 		UserProfile user = (UserProfile) request.getSession().getAttribute("user");
 		String login = user.getLogin();
 		String fName = user.getFirstName();
@@ -54,7 +53,7 @@
 	<%
 		if(posts != null){
 		for (Post p : posts) {
-			List<Comment> comments = commentByPost.get(p);
+			List<Comment> comments = p.getComment();
 			%>
 	
 		  <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">

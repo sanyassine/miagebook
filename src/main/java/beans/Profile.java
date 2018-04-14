@@ -1,5 +1,6 @@
 package beans;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Profile extends Bean{
@@ -8,8 +9,17 @@ public class Profile extends Bean{
 	private String lastName;
 	private String email;
 	private String login;
-	private List<UserProfile> friends;
-	private List<Post> posts;
+	private List<Profile> friends = new ArrayList<>();
+	private List<Post> posts = new ArrayList<>();
+	
+	public boolean isFriendsWith(String login) {
+		for(Profile friend : friends) {
+			if(friend.getLogin().equals(login)) {
+				return true;
+			}
+		}
+		return false;
+	}
 	public String getLogin() {
 		return login;
 	}
@@ -39,11 +49,19 @@ public class Profile extends Bean{
 		this.email = email;
 		updateLastChangeDate();
 	}
-	public List<UserProfile> getFriends() {
+	public List<Profile> getFriends() {
 		return friends;
 	}
-	public void setFriends(List<UserProfile> friends) {
+	public void setFriends(List<Profile> friends) {
 		this.friends = friends;
+	}
+	public void removeFriendByLogin(String login) {
+		Profile profileToRemove = null;
+		for(Profile friend : friends) {
+			if(friend.getLogin().equals(login)) {
+				profileToRemove = friend;
+			}
+		}
 	}
 	public List<Post> getPosts() {
 		return posts;

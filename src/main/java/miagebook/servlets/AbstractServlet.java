@@ -6,6 +6,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.ws.rs.GET;
 
 import beans.UserProfile;
 import persistence.CommentMapper;
@@ -14,9 +15,9 @@ import persistence.ProfileMapper;
 
 public abstract class AbstractServlet extends HttpServlet{
 	protected static final String USER = "user";
-	protected static final CommentMapper commentMapper = new CommentMapper();
-	protected static final PostMapper postMapper = new PostMapper();
-	protected static final ProfileMapper profileMapper = new ProfileMapper();
+	protected static final CommentMapper commentMapper = CommentMapper.getInstance();
+	protected static final PostMapper postMapper = PostMapper.getInstance();
+	protected static final ProfileMapper profileMapper =ProfileMapper.getInstance();
 	public AbstractServlet() {
 		super();
 	}

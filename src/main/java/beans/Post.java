@@ -1,15 +1,24 @@
 package beans;
 
-import java.security.Timestamp;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 public class Post extends Bean{
-	private int idPost;
+	private int idPost ;
 	private Profile author;
 	private String authorLogin;
 	private Date date;
 	private String title;
 	private String content;
+	private List<Comment> comment = new ArrayList<>();
+	
+	public List<Comment> getComment() {
+		return comment;
+	}
+	public void setComment(List<Comment> comment) {
+		this.comment = comment;
+	}
 	public Profile getAuthor() {
 		return author;
 	}

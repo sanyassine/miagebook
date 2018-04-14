@@ -44,6 +44,8 @@ insert into posts (id_post,login_author,title,content) values(1,'Assim','Mon Tit
 
 select id_post,login_author,date_post,content,title from posts;
 select * from userprofiles;
+insert into friends(login_user,login_friend) values('assim','sasa');
+insert into friends(login_user,login_friend) values('sasa','assim');
 delete from userprofiles;
 
 select * from comments;

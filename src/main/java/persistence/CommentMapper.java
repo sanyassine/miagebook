@@ -16,9 +16,16 @@ import utils.sync.thread.CommentSyncThread;
 import utils.sync.thread.SyncObjectThread;
 
 public class CommentMapper extends DataMapper{
+	private static CommentMapper INSTANCE;
+	public static CommentMapper getInstance() {
+		if(INSTANCE == null){
+			INSTANCE = new CommentMapper();
+		}
+		return INSTANCE;
+	}
 	private Map<Integer,Comment> map = new HashMap<Integer,Comment>();
 	
-	public CommentMapper() {
+	private CommentMapper() {
 		super();
 	}
 	CallableStatement provideCommentStatement;
@@ -43,6 +50,8 @@ public class CommentMapper extends DataMapper{
 				comment.setContent(content);
 				comment.setIdComment(idComment);
 				comment.setDate(date);
+				map.put(idComment, comment);
+				comment.setInserted(true);
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -70,6 +79,7 @@ public class CommentMapper extends DataMapper{
 					comments.add(com);
 				}
 			}
+			post.setComment(comments);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -99,6 +109,8 @@ public class CommentMapper extends DataMapper{
 			
 			insertCommentStatement.execute();
 			c.commit();
+			map.put(idComment, comment);
+			comment.setInserted(true);
 			return true;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

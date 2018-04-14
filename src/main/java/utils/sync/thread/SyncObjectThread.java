@@ -7,7 +7,7 @@ import utils.sync.run.SynchronizeRunnable;
 public abstract class SyncObjectThread extends Thread {
 	protected Bean object;
 	protected DataMapper mapper;
-	protected static final long FREQUENCE = 20 * 1000;
+	protected static final long FREQUENCE = 5 * 1000;
 	public SyncObjectThread(Bean obj, DataMapper mapper) {
 		object = obj;
 		this.mapper = mapper;

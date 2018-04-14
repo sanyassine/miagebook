@@ -16,12 +16,14 @@ import beans.Post;
 import beans.UserProfile;
 import persistence.CommentMapper;
 import persistence.PostMapper;
+import services.CommentService;
+import services.PostService;
 
 public class HomeServlet extends AbstractServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		UserProfile user = getUserFromSession(request);
-		if(user != null) {
+		if(user != null) { // providing posts from user connected
 			List<Post> posts = postMapper.findPostsByLogin(user.getLogin());
 			request.setAttribute("posts", posts);
 			forwardTo(request,response,"/home.jsp");
@@ -39,43 +41,12 @@ public class HomeServlet extends AbstractServlet {
 		int idPostComment = getIdPostComment(request);  
 		if(contentPost != null && titlePost != null && contentPost.length() > 0 && titlePost.length() > 0) { // new post added
 			if(user != null) {
-				Post post = new Post();
-				post.setAuthor(user);
-				post.setAuthorLogin(user.getLogin());
-				post.setContent(contentPost);
-				post.setDate(new Timestamp(new Date().getTime()));
-				post.setTitle(titlePost);
-				postMapper.insert(post);
+				PostService.createPost(user, contentPost, titlePost);
 			} 
 		}else if(contentComment != null && idPostComment != -1 && contentComment.length() > 0 ) { // new comment added
-			Comment comment = new Comment();
-			comment.setAuthorLogin(user.getLogin());
-			comment.setContent(contentComment);
-			comment.setIdPost(idPostComment);
-			comment.setDate(new Date());
-			commentMapper.insert(comment);
+			CommentService.createComment(user, idPostComment, contentComment);
 		}
 		response.sendRedirect("home");
-		
-	}
-	
-	@Override // add post
-	protected void doPut(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
-		UserProfile user = getUserFromSession(request);
-		if(user != null) {
-			String content = (String) request.getAttribute("contentPost");
-			String title   = (String) request.getAttribute("titlePost");
-			Post post = new Post();
-			post.setAuthor(user);
-			post.setAuthorLogin(user.getLogin());
-			post.setContent(content);
-			post.setDate(new Timestamp(new Date().getTime()));
-			post.setTitle(title);
-			postMapper.insert(post);
-			forwardTo(request,response,"/home.jsp");
-		}
-		else
-			response.sendRedirect("login");
 	}
 	
 	private int getIdPostComment(HttpServletRequest request) {

@@ -32,8 +32,24 @@
 	<ul class="list-group">
 		  
 	<%
-		for(Profile p : friends){
-			%><li class="list-group-item"><%out.print(p.getLogin()); %></li><%
+		for(Profile p : friends){ %>
+		<%if(!p.getLogin().equals(user.getLogin())){ %>
+			<li class="list-group-item"><%out.print(p.getLogin()); %>
+			
+				<% if (user.isFriendsWith(p.getLogin())){ %>
+					<form method="post" action="myprofile">
+						<input type="hidden" type="text" name="loginRemove" value="<% out.print(p.getLogin()); %>">
+						<button type="submit" value="submit">remove from friends</button>
+					</form>
+				<% }else{ %>
+					<form method="post" action="myprofile">
+						<input type="hidden" type="text" name="loginAdd" value="<% out.print(p.getLogin()); %>">
+						<button type="submit" value="submit">add to friends</button>
+					</form>
+				<% }
+				%>
+			</li>
+		<%}
 		}
 	%>
 	</ul>

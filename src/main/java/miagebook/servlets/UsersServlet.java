@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import beans.Profile;
 import beans.UserProfile;
 import persistence.ProfileMapper;
+import services.FriendsService;
 
 public class UsersServlet extends AbstractServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -29,11 +30,13 @@ public class UsersServlet extends AbstractServlet {
 			String loginRemove = (String) request.getParameter("loginRemove");
 			String loginAdd = (String) request.getParameter("loginAdd");
 			if(loginRemove != null) {
-				profileMapper.removeFriend(user, loginRemove);
+				FriendsService.deleteFriends(user, loginRemove);
 			}else if(loginAdd != null) {
-				profileMapper.addFriend(user, loginAdd);
+				FriendsService.makeFriends(user, loginAdd);
 			}
+			List<Profile> users = profileMapper.findAll();
 			setUserInSession(request, user);
+			request.setAttribute("users", users);
 			response.sendRedirect("users");
 		}else {
 			response.sendRedirect("login");

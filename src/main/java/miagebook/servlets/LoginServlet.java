@@ -26,7 +26,7 @@ public class LoginServlet extends AbstractServlet {
 		
 		String login = request.getParameter("login");
 		String password = request.getParameter("password");
-		UserProfile userProfile = profileMapper.authentificate(login, password);
+		UserProfile userProfile = profileMapper.authenticate(login, password);
 		if(userProfile != null) {
 			setUserInSession(request, userProfile);
 			forwardTo(request,response,"/home");

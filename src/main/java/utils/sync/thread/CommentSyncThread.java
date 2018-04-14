@@ -9,12 +9,13 @@ public class CommentSyncThread extends SyncObjectThread {
 
 	public CommentSyncThread(Bean obj, DataMapper mapper) {
 		super(obj, mapper);
-		// TODO Auto-generated constructor stub
 	}
-
+	
 	@Override
 	public SynchronizeRunnable getSynchronizedRunnable() {
 		return new CommentSyncRunnable(object, mapper);
 	}
+	
+	
 
 }

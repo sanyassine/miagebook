@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import beans.Profile;
 import beans.UserProfile;
 import persistence.ProfileMapper;
+import services.FriendsService;
 
 public class MyProfileServlet extends AbstractServlet{
 	
@@ -17,16 +18,7 @@ public class MyProfileServlet extends AbstractServlet{
 	    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 			UserProfile user = (UserProfile) request.getSession().getAttribute("user");
 			if(user != null) {
-				// TEST
 				List<Profile> friends = profileMapper.findFriendsByProfile(user);
-				/*for(int i = 0 ; i < 10 ; i++) {
-					Profile p = new Profile();
-					p.setEmail("assasa@asasa.com");
-					p.setFirstName("Assssim");p.setLastName("senoussi");
-					p.setLogin("asssimtsenoussi");
-					friends.add(p);
-				}*/
-				//FIN TEST
 				request.setAttribute("friends", friends);
 				forwardTo(request,response,"/myprofile.jsp");
 			}
@@ -36,7 +28,22 @@ public class MyProfileServlet extends AbstractServlet{
 	 
 	 @Override
 	    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		 
+		 	UserProfile user = getUserFromSession(request);
+			if(user != null) {
+				String loginRemove = (String) request.getParameter("loginRemove");
+				String loginAdd = (String) request.getParameter("loginAdd");
+				if(loginRemove != null) {
+					FriendsService.deleteFriends(user, loginRemove);
+				}else if(loginAdd != null) {
+					FriendsService.makeFriends(user, loginAdd);
+				}
+				List<Profile> users = profileMapper.findAll();
+				setUserInSession(request, user);
+				request.setAttribute("users", users);
+				response.sendRedirect("myprofile");
+			}else {
+				response.sendRedirect("login");
+			}
 	 }
 
 }

@@ -62,6 +62,7 @@ public class Profile extends Bean{
 				profileToRemove = friend;
 			}
 		}
+		friends.remove(profileToRemove);
 	}
 	public List<Post> getPosts() {
 		return posts;

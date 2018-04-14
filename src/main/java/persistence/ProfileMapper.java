@@ -78,7 +78,7 @@ public class ProfileMapper extends DataMapper{
 					friends.add(friend);
 				}
 			}
-			profile.getFriends().addAll(friends);
+			profile.setFriends(friends);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -138,7 +138,7 @@ public class ProfileMapper extends DataMapper{
 	
 	CallableStatement authentificateStatement;
 
-	public UserProfile authentificate(String login, String password) {
+	public UserProfile authenticate(String login, String password) {
 		UserProfile user = null;
 		try {
 			if (authentificateStatement == null) {
@@ -178,21 +178,18 @@ public class ProfileMapper extends DataMapper{
 		return false;
 	}
 	CallableStatement addFriendStatement;
-	public boolean addFriend(Profile profile, String loginFriends) {
+	public boolean addFriend(String login, String loginFriends) {
 		try {
 			if(addFriendStatement == null) {
 				addFriendStatement = c.prepareCall("insert into friends values(?,?)");	
 			}
-			addFriendStatement.setString(1, profile.getLogin());
+			addFriendStatement.setString(1, login);
 			addFriendStatement.setString(2, loginFriends);
 			addFriendStatement.execute();
-			addFriendStatement.setString(2, profile.getLogin());
+			addFriendStatement.setString(2, login);
 			addFriendStatement.setString(1, loginFriends);
 			addFriendStatement.execute();
 			c.commit();
-			Profile friend = find(loginFriends);
-			friend.getFriends().add(friend);
-			profile.getFriends().add(friend);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -211,10 +208,6 @@ public class ProfileMapper extends DataMapper{
 			removeFriendStatement.setString(1, loginFriends);
 			removeFriendStatement.execute();
 			c.commit();
-			profile.removeFriendByLogin(loginFriends);
-			Profile friend = find(loginFriends);
-			friend.removeFriendByLogin(profile.getLogin());
-			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

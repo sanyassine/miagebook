@@ -3,6 +3,7 @@
 <html>
 	<head>
 		<link href="css/bootstrap.min.css" rel="stylesheet">
+		<link href="css/home.css" rel="stylesheet">
 		<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 		<script
 			src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
@@ -10,7 +11,8 @@
 		<script src="js/bootstrap.min.js"></script>
 	</head>
 <body>
-	
+	<%@include  file="header_connected.html" %>
+    <main role="main" class="container">
 	<h1>My profil</h1>
 	
 	
@@ -31,6 +33,6 @@
 			out.print(p); %> </br><%
 		}
 	%>
-
+	</main>
 </body>
 </html>

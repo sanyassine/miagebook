@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import beans.Profile;
 import beans.UserProfile;
 
-public class FriendsServlet extends AbstractServlet{
+public class MyProfileServlet extends AbstractServlet{
 	
 	 @Override
 	    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -28,7 +28,7 @@ public class FriendsServlet extends AbstractServlet{
 				}
 				//FIN TEST
 				request.setAttribute("friends", friends);
-				forwardTo(request,response,"/friends.jsp");
+				forwardTo(request,response,"/myprofile.jsp");
 			}
 			else
 				response.sendRedirect("login");

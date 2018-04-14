@@ -14,21 +14,7 @@
 		<script src="js/bootstrap.min.js"></script>
 	</head>
 <body class="text-center">
-<header>
-      <!-- Fixed navbar -->
-      <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-        <div class="collapse navbar-collapse" id="navbarCollapse">
-          <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-              <a class="nav-link" href="login">Login <span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item active">
-              <a class="nav-link" href="register">Register <span class="sr-only">(current)</span></a>
-            </li>
-          </ul>
-        </div>
-      </nav>
-    </header>
+	<%@include  file="header_not_connected.html" %>
 	
 	<form class="form-signin" action="login" method="post">
       <img class="mb-4" src="img/M.gif" alt="" width="72" height="72">

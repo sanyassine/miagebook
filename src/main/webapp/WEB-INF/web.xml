@@ -53,13 +53,13 @@
 
 	<!-- FRIENDS -->
 	<servlet>
-		<servlet-name>friendsServlet</servlet-name>
-		<servlet-class>miagebook.servlets.FriendsServlet</servlet-class>
+		<servlet-name>myprofileServlet</servlet-name>
+		<servlet-class>miagebook.servlets.MyProfileServlet</servlet-class>
 	</servlet>
 
 	<servlet-mapping>
-		<servlet-name>friendsServlet</servlet-name>
-		<url-pattern>/friends</url-pattern>
+		<servlet-name>myprofileServlet</servlet-name>
+		<url-pattern>/myprofile</url-pattern>
 	</servlet-mapping>
 
 </web-app>

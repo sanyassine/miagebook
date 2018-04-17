@@ -214,9 +214,6 @@ public class ProfileMapper extends DataMapper{
 		}
 		return false;
 	}
-	public boolean addPost(Profile profile, Post post) {
-		return false;
-	}
 	public boolean updateFriends(Profile profile) {
 		return false;
 	}

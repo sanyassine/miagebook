@@ -84,11 +84,11 @@ public class CommentMapper extends DataMapper{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
 		return comments;
 	}
 	CallableStatement insertCommentStatement;
 	public boolean insert(Comment comment) {
+		boolean res;
 		try {
 			if(insertCommentStatement == null) {
 				insertCommentStatement = c.prepareCall("insert into comments(id_comments,id_post,author_login,content,date_comment)"
@@ -111,12 +111,13 @@ public class CommentMapper extends DataMapper{
 			c.commit();
 			map.put(idComment, comment);
 			comment.setInserted(true);
-			return true;
+			res = true;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			res = false;
 		}
-		return false;
+		return res;
 	}
 	CallableStatement updateContentStatement;
 	public boolean updateContent(Comment comment) {

@@ -106,7 +106,7 @@ public class PostMapper extends DataMapper{
 	CallableStatement insertPostStatement;
 
 	public boolean insert(Post post) {
-		boolean res = false;
+		boolean res;
 		try {
 			if (insertPostStatement == null) {
 				insertPostStatement = c.prepareCall(
@@ -121,10 +121,10 @@ public class PostMapper extends DataMapper{
 			
 			insertPostStatement.execute();
 			c.commit();
-			res = true;
 			post.setIdPost(id);
 			map.put(id, post);
 			post.setInserted(true);
+			res = true;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -132,8 +132,23 @@ public class PostMapper extends DataMapper{
 		}
 		return res;
 	}
+	CallableStatement updateContentStatement;
 	public boolean updateContent(Post post) {
-		return false;
+		boolean res;
+		try {
+			if(updateContentStatement == null) {
+				updateContentStatement = c.prepareCall("update posts set content=? where id_post=?");
+			}
+			updateContentStatement.setString(1, post.getContent());
+			updateContentStatement.setInt(2, post.getIdPost());
+			updateContentStatement.execute();
+			res = true;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			res =false;
+		}
+		return res;
 	}
 	public boolean updateTitle(Post post) {
 		return false;

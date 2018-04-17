@@ -118,7 +118,22 @@ public class CommentMapper extends DataMapper{
 		}
 		return false;
 	}
+	CallableStatement updateContentStatement;
 	public boolean updateContent(Comment comment) {
-		return false;
+		boolean res;
+		try {
+			if (updateContentStatement == null) {
+				updateContentStatement = c.prepareCall("update comments set content=? where id_comments=?");
+			}
+			updateContentStatement.setString(1, comment.getContent());
+			updateContentStatement.setInt(2, comment.getIdComment());
+			updateContentStatement.execute();
+			res = true;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			res = false;
+		}
+		return res;
 	}
 }

@@ -8,7 +8,9 @@ create table userprofiles(
 	password varchar2(255),
 	firstname varchar2(255),
 	lastname varchar2(255),
-	email varchar2(255)
+	email varchar2(255),
+	isConnected number,
+	lastConnection timestamp
 );
 
 create table posts(

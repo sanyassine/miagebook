@@ -1,6 +1,9 @@
 package beans;
 
+import java.sql.Date;
+import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 public class Profile extends Bean{
@@ -11,6 +14,8 @@ public class Profile extends Bean{
 	private String login;
 	private List<Profile> friends = new ArrayList<>();
 	private List<Post> posts = new ArrayList<>();
+	private Timestamp lastConnection;
+	private boolean isConnected;
 	
 	public boolean isFriendsWith(String login) {
 		for(Profile friend : friends) {
@@ -51,6 +56,13 @@ public class Profile extends Bean{
 	}
 	public List<Profile> getFriends() {
 		return friends;
+	}
+	
+	public boolean isConnected() {
+		return isConnected;
+	}
+	public void setConnected(boolean isConnected) {
+		this.isConnected = isConnected;
 	}
 	public void setFriends(List<Profile> friends) {
 		this.friends = friends;
@@ -116,6 +128,12 @@ public class Profile extends Bean{
 		} else if (!posts.equals(other.posts))
 			return false;
 		return true;
+	}
+	public Timestamp getLastConnection() {
+		return lastConnection;
+	}
+	public void setLastConnection(Timestamp lastConnection) {
+		this.lastConnection = lastConnection;
 	}
 	@Override
 	public String toString() {

@@ -3,7 +3,10 @@ package persistence;
 import java.sql.CallableStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -26,6 +29,7 @@ public class ProfileMapper extends DataMapper{
 	
 	private ProfileMapper() {
 		super();
+		
 	}
 	CallableStatement findLoginStatement;
 	public Profile find(String login) {
@@ -35,19 +39,29 @@ public class ProfileMapper extends DataMapper{
 		UserProfile user = null;
 		try {
 			if (findLoginStatement == null) {
-				findLoginStatement = c.prepareCall("select login,password,firstname,lastname,email from userprofiles"
+				findLoginStatement = c.prepareCall("select login,password,firstname,lastname,email,isConnected,lastconnection from userprofiles"
 						+" where login=?");
 			}
 			findLoginStatement.setString(1, login);
 			ResultSet rs = findLoginStatement.executeQuery();
 			if(rs.next()) {
-				String firstname = rs.getString("firstname");
-				String lastname  = rs.getString("lastname");
-				String email     = rs.getString("email");
+				String firstname   = rs.getString("firstname");
+				String lastname    = rs.getString("lastname");
+				String email       = rs.getString("email");
+				int isConnected = rs.getInt("isConnected");
+				Timestamp lastConnection = rs.getTimestamp("lastconnection");
 				user = new UserProfile();
 				map.put(login, user);
 				user.setEmail(email);user.setFirstName(firstname);
 				user.setLastName(lastname);user.setLogin(login);
+				user.setLastConnection(lastConnection);
+				user.setLastConnection(lastConnection);
+				if(isConnected == 1) {
+					user.setConnected(true);
+				}
+				else {
+					user.setConnected(false);
+				}
 				List<Profile> friends = findFriendsByProfile(user);
 				user.setFriends(friends);
 				
@@ -176,6 +190,27 @@ public class ProfileMapper extends DataMapper{
 	public boolean updatePassword(Profile profile) {
 		return false;
 	}
+	
+	
+	CallableStatement connectUserStatement;
+	public void connectUser(UserProfile userProfile) {
+		try {
+			if(connectUserStatement == null) {
+				connectUserStatement = c.prepareCall("update userprofiles set isConnected = 1, lastConnection = ? where login = ?");
+			}
+			Date date = new Date();
+			Timestamp timestamp = new Timestamp(date.getTime());
+			userProfile.setLastConnection(timestamp);
+			connectUserStatement.setTimestamp(1, userProfile.getLastConnection());
+			connectUserStatement.setString(2, userProfile.getLogin());
+			connectUserStatement.execute();
+			c.commit();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
 	CallableStatement addFriendStatement;
 	public boolean addFriend(String login, String loginFriends) {
 		try {

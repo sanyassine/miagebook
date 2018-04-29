@@ -4,3 +4,6 @@ connection.xml
 .classpath
 .project
 .settings
+.classpath
+src/main/java/persistence/connection/Oracle.java
+.classpath

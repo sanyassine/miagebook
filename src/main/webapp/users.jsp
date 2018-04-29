@@ -25,9 +25,20 @@
 	<%
 		for(Profile p : users){ %>
 		<%if(!p.getLogin().equals(user.getLogin())){ %>
-			<li class="list-group-item"><%out.print(p.getLogin()); %>
-			
-				<% if (user.isFriendsWith(p.getLogin())){ %>
+			<li class="list-group-item"><%out.print(p.getLogin()); 
+					
+				//to see if the user is connected
+				 if(p.isConnected()) {
+					%>
+					<span>(connected)</span>
+				<%}
+				else {	%>
+					<span>(not connected)</span>
+				<% }%>
+				
+				<p>Last connection: <% out.print(p.getLastConnection());%></p> 
+				
+				<%if (user.isFriendsWith(p.getLogin())){ %>
 					<form method="post" action="users">
 						<input type="hidden" type="text" name="loginRemove" value="<% out.print(p.getLogin()); %>">
 						<button type="submit" value="submit">remove from friends</button>
@@ -37,8 +48,7 @@
 						<input type="hidden" type="text" name="loginAdd" value="<% out.print(p.getLogin()); %>">
 						<button type="submit" value="submit">add to friends</button>
 					</form>
-				<% }
-				%>
+				<% }%>
 			</li>
 		<%}
 		}

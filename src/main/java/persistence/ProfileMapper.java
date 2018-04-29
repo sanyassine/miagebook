@@ -211,6 +211,22 @@ public class ProfileMapper extends DataMapper{
 		}
 	}
 	
+	
+	CallableStatement discoUserStatement;
+	public void disconnectUser(UserProfile userProfile) {
+		try {
+			if(discoUserStatement == null) {
+				discoUserStatement = c.prepareCall("update userprofiles set isConnected = 0 where login = ?");
+			}
+			discoUserStatement.setString(1, userProfile.getLogin());
+			discoUserStatement.execute();
+			c.commit();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
 	CallableStatement addFriendStatement;
 	public boolean addFriend(String login, String loginFriends) {
 		try {

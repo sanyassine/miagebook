@@ -50,7 +50,7 @@ var createTitlePart = function(title, datetime){
 	
 	var smallDate = document.createElement("small");
 	smallDate.className="text-muted";
-	smallDate.innerHTML = datetime;
+	smallDate.innerHTML = new Date(datetime);
 	
 	divTitle.appendChild(h5Title);
 	divTitle.appendChild(smallDate);

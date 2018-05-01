@@ -1,6 +1,7 @@
 package services;
 
 import java.sql.Timestamp;
+import java.util.Calendar;
 import java.util.Date;
 
 import beans.Post;
@@ -15,7 +16,7 @@ public class PostService {
 		post.setAuthor(user);
 		post.setAuthorLogin(user.getLogin());
 		post.setContent(content);
-		post.setDate(new Timestamp(new Date().getTime()));
+		post.setDate(Calendar.getInstance().getTime());
 		post.setTitle(title);
 		postMapper.insert(post);
 	}

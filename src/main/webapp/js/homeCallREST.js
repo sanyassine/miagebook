@@ -117,7 +117,7 @@ var createCommentsPart = function(comments){
 		var content = com.content;
 		
 		var li = document.createElement("li");
-		li.innerHTML = author.concat(" : ").concat(content).concat(" - ").concat(datetime);
+		li.innerHTML = author.concat(" : ").concat(content).concat(" - ").concat(new Date(datetime));
 		listComment.appendChild(li);
 	}
 	return listComment;

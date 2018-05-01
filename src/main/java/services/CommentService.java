@@ -1,5 +1,6 @@
 package services;
 
+import java.util.Calendar;
 import java.util.Date;
 
 import beans.Comment;
@@ -13,7 +14,7 @@ public class CommentService {
 		comment.setAuthorLogin(user.getLogin());
 		comment.setContent(content);
 		comment.setIdPost(idPost);
-		comment.setDate(new Date());
+		comment.setDate(Calendar.getInstance().getTime());
 		commentMapper.insert(comment);
 	}
 }

@@ -50,7 +50,7 @@ var createTitlePart = function(title, datetime){
 	
 	var smallDate = document.createElement("small");
 	smallDate.className="text-muted";
-	smallDate.innerHTML = datetime;
+	smallDate.innerHTML = new Date(datetime);
 	
 	divTitle.appendChild(h5Title);
 	divTitle.appendChild(smallDate);
@@ -117,7 +117,7 @@ var createCommentsPart = function(comments){
 		var content = com.content;
 		
 		var li = document.createElement("li");
-		li.innerHTML = author.concat(" : ").concat(content).concat(" - ").concat(datetime);
+		li.innerHTML = author.concat(" : ").concat(content).concat(" - ").concat(new Date(datetime));
 		listComment.appendChild(li);
 	}
 	return listComment;

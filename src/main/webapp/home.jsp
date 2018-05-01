@@ -5,6 +5,7 @@
 	<head>
 		<link href="css/bootstrap.min.css" rel="stylesheet">
 		<link href="css/home.css" rel="stylesheet">
+		<script type="text/javascript" src="js/callREST.js"></script>
 		
 		<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 		<script
@@ -46,6 +47,17 @@
 		    <button type="submit" value="submit" class="btn btn-primary">New Post</button>
 	  	</div>
   </form>
+  
+  
+ 	<!--  post retrieved by rest  -->
+  <div id="all-posts">
+  	<h2>List of Posts (REST)</h1>
+  	<ul id="list-posts">
+  
+  	</ul>
+  </div>
+  
+  
 
 	<h2>List of Posts :</h2>
 	

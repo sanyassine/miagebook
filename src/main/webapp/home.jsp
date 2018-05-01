@@ -68,7 +68,7 @@
 		  <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
 		    <div class="d-flex w-100 justify-content-between">
 		      <h5 class="mb-1"><% out.print(p.getTitle()); %></h5>
-		      <small class="text-muted"><% out.print(p.getDate()); %></small>
+		      <small class="text-muted"><% out.print(p.getDate().getTime()); %></small>
 		    </div>
 		    <p class="mb-1"><%out.print(p.getContent()); %></p>
 		    <small class="text-muted"><%out.print(p.getAuthorLogin()); %></small></br>

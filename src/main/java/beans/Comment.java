@@ -1,14 +1,14 @@
 package beans;
 
+import java.sql.Timestamp;
 import java.util.Date;
-import java.util.Random;
 
 public class Comment extends Bean{
 	private int idComment;
 	private Post post;
 	private Profile author;
 	private String authorLogin;
-	private Date date;
+	private Timestamp date;
 	private String title;
 	private String content;
 	private int idPost;
@@ -50,10 +50,10 @@ public class Comment extends Bean{
 	public void setAuthor(Profile author) {
 		this.author = author;
 	}
-	public Date getDate() {
+	public Timestamp getDate() {
 		return date;
 	}
-	public void setDate(Date date) {
+	public void setDate(Timestamp date) {
 		this.date = date;
 	}
 	public String getTitle() {

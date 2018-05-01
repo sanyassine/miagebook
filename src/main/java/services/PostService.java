@@ -16,7 +16,7 @@ public class PostService {
 		post.setAuthor(user);
 		post.setAuthorLogin(user.getLogin());
 		post.setContent(content);
-		post.setDate(Calendar.getInstance().getTime());
+		post.setDate(new Timestamp(new Date().getTime()));
 		post.setTitle(title);
 		postMapper.insert(post);
 	}

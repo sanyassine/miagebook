@@ -142,7 +142,7 @@ public class PostMapper extends DataMapper{
 			int id = new Random().nextInt();
 			insertPostStatement.setInt(1, id);
 			insertPostStatement.setString(2, post.getAuthorLogin());
-			insertPostStatement.setDate(3, new java.sql.Date(post.getDate().getTime()));
+			insertPostStatement.setTimestamp(3, post.getDate());
 			insertPostStatement.setString(4, post.getTitle());
 			insertPostStatement.setString(5, post.getContent());
 			

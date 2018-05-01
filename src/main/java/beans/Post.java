@@ -1,5 +1,6 @@
 package beans;
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -8,7 +9,7 @@ public class Post extends Bean{
 	private int idPost ;
 	private Profile author;
 	private String authorLogin;
-	private Date date;
+	private Timestamp date;
 	private String title;
 	private String content;
 	private List<Comment> comment = new ArrayList<>();
@@ -25,10 +26,10 @@ public class Post extends Bean{
 	public void setAuthor(Profile author) {
 		this.author = author;
 	}
-	public Date getDate() {
+	public Timestamp getDate() {
 		return date;
 	}
-	public void setDate(Date date) {
+	public void setDate(Timestamp date) {
 		this.date = date;
 	}
 	public String getContent() {

@@ -4,6 +4,7 @@ import java.sql.CallableStatement;
 import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -44,7 +45,7 @@ public class CommentMapper extends DataMapper{
 				int idPost = rs.getInt("id_post");
 				String authorLogin = rs.getString("author_login");
 				String content = rs.getString("content");
-				Date date = rs.getDate("date_comment");
+				Timestamp date = rs.getTimestamp("date_comment");
 				comment.setIdPost(idPost);
 				comment.setAuthorLogin(authorLogin);
 				comment.setContent(content);
@@ -100,12 +101,11 @@ public class CommentMapper extends DataMapper{
 			int idPost    = comment.getIdPost();
 			String authorLogin = comment.getAuthorLogin();
 			String content = comment.getContent();
-			Date date = new Date(comment.getDate().getTime());
 			insertCommentStatement.setInt(1, idComment);
 			insertCommentStatement.setInt(2, idPost);
 			insertCommentStatement.setString(3, authorLogin);
 			insertCommentStatement.setString(4, content);
-			insertCommentStatement.setDate(5, date);
+			insertCommentStatement.setTimestamp(5, comment.getDate());
 			
 			insertCommentStatement.execute();
 			c.commit();

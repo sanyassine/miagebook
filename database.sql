@@ -50,6 +50,7 @@ insert into friends(login_user,login_friend) values('assim','sasa');
 insert into friends(login_user,login_friend) values('sasa','assim');
 delete from userprofiles;
 
-select * from comments;
+select * from posts;
 
+select * from comments;
 select * from friends;

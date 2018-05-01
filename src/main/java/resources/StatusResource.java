@@ -1,5 +1,7 @@
 package resources;
 
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import javax.json.Json;
@@ -45,6 +47,14 @@ public class StatusResource {
 	public String findHomeByUser(@PathParam("loginUser") String loginUser) {
 		JsonObject json = JsonObject.EMPTY_JSON_OBJECT;
 		List<Post> posts = PostMapper.getInstance().findPostHomeByLogin(loginUser, 10);
+		Collections.sort(posts, new Comparator<Post>() {
+			@Override
+			public int compare(Post o1, Post o2) {
+				if(o1.getDate().before(o2.getDate()))
+					return 1;
+				else return -1;
+			}
+		});
 		JsonArrayBuilder arrayBuilder = Json.createArrayBuilder();
 		for(Post post : posts) {
 			JsonObjectBuilder objectBuilder = Json.createObjectBuilder();

@@ -27,14 +27,12 @@ public class StatusResource {
 		JsonArrayBuilder arrayBuilder = Json.createArrayBuilder();
 		for(Post post : posts) {
 			JsonObjectBuilder objectBuilder = Json.createObjectBuilder();
-			post.getAuthorLogin();
-			post.getContent();
-			post.getDate();
-			post.getTitle();
+
 			objectBuilder.add("author_login", post.getAuthorLogin());
 			objectBuilder.add("content", post.getContent());
 			objectBuilder.add("datetime", post.getDate().getTime());
 			objectBuilder.add("title", post.getTitle());
+			objectBuilder.add("id_post", post.getIdPost());
 			arrayBuilder.add(objectBuilder.build());
 		}
 		return arrayBuilder.build().toString();

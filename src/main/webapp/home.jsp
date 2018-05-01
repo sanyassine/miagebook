@@ -19,7 +19,6 @@
 	<%@include  file="header_connected.html" %>
     <!-- Begin page content -->
     <main role="main" class="container">
-
 	<%
 		List<Post> posts = (List) request.getAttribute("posts");
 		UserProfile user = (UserProfile) request.getSession().getAttribute("user");
@@ -28,6 +27,8 @@
 		String lName = user.getLastName();
 		String email = user.getEmail();
 	%>
+	<span id="login_data" class="invisible"><% out.print(login); %></span> <!-- store login connected -->
+	
 	<h2>
 		Welcome
 		<%
@@ -56,12 +57,8 @@
   
   	</ul>
   </div>
-  
-  
-
-	<h2>List of Posts :</h2>
 	
-	<div class="list-group">
+	<div class="list-group invisible">
 	<%
 		if(posts != null){
 		for (Post p : posts) {

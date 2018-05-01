@@ -33,7 +33,7 @@ var response = function() {
 			a.appendChild(createContentPart(content));
 			a.appendChild(createAuthorPart(author));
 			a.appendChild(createAddCommentPart(idPost));
-			a.appendChild(createCommentsPart(comments));
+			//a.appendChild(createCommentsPart(comments));
 			
 			divAllPosts.appendChild(a);
 		}

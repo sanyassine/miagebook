@@ -38,6 +38,8 @@
 				
 				<p>Last connection: <% out.print(p.getLastConnection());%></p> 
 				
+				<a href="feed?login=<%out.print(p.getLogin());%>">See feed</a>
+				
 				<%if (user.isFriendsWith(p.getLogin())){ %>
 					<form method="post" action="users">
 						<input type="hidden" type="text" name="loginRemove" value="<% out.print(p.getLogin()); %>">

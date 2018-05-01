@@ -72,5 +72,17 @@
 		<servlet-name>usersServlet</servlet-name>
 		<url-pattern>/users</url-pattern>
 	</servlet-mapping>
+	
+		<!-- FEED -->
+	<servlet>
+		<servlet-name>feedServlet</servlet-name>
+		<servlet-class>miagebook.servlets.FeedServlet</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>feedServlet</servlet-name>
+		<url-pattern>/feed</url-pattern>
+	</servlet-mapping>
 
 </web-app>

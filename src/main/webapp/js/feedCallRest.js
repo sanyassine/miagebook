@@ -24,6 +24,7 @@ var response = function() {
 			var datetime = res[i].datetime;
 			var title    = res[i].title;
 			var idPost   = res[i].id_post;
+			var comments = res[i].comments;
 			
 			var a = document.createElement("a");
 			a.className = "list-group-item list-group-item-action flex-column align-items-start";
@@ -32,6 +33,7 @@ var response = function() {
 			a.appendChild(createContentPart(content));
 			a.appendChild(createAuthorPart(author));
 			a.appendChild(createAddCommentPart(idPost));
+			a.appendChild(createCommentsPart(comments));
 			
 			divAllPosts.appendChild(a);
 		}
@@ -106,5 +108,19 @@ var createAddCommentPart = function(idPost){
 	return form;
 }
 
+var createCommentsPart = function(comments){
+	var listComment = document.createElement("ul");
+	for(var i = 0 ; i < comments.length ; i = i + 1){
+		var com = comments[i];
+		var author = com.author;
+		var datetime = com.datetime;
+		var content = com.content;
+		
+		var li = document.createElement("li");
+		li.innerHTML = author.concat(" : ").concat(content).concat(" - ").concat(datetime);
+		listComment.appendChild(li);
+	}
+	return listComment;
+}
 
 window.addEventListener("load",setupListeners);

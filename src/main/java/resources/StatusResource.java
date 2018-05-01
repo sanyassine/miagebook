@@ -11,6 +11,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 
+import beans.Comment;
 import beans.Post;
 import persistence.PostMapper;
 
@@ -47,12 +48,22 @@ public class StatusResource {
 		JsonArrayBuilder arrayBuilder = Json.createArrayBuilder();
 		for(Post post : posts) {
 			JsonObjectBuilder objectBuilder = Json.createObjectBuilder();
-
 			objectBuilder.add("author_login", post.getAuthorLogin());
 			objectBuilder.add("content", post.getContent());
 			objectBuilder.add("datetime", post.getDate().getTime());
 			objectBuilder.add("title", post.getTitle());
 			objectBuilder.add("id_post", post.getIdPost());
+			
+			JsonArrayBuilder arrayCommentBuilder = Json.createArrayBuilder();
+			for(Comment com : post.getComment()) {
+				JsonObjectBuilder objectCommentBuilder = Json.createObjectBuilder();
+				
+				objectCommentBuilder.add("author", com.getAuthorLogin());		
+				objectCommentBuilder.add("content", com.getContent());
+				objectCommentBuilder.add("datetime", com.getDate().getTime());
+				arrayCommentBuilder.add(objectCommentBuilder);
+			}
+			objectBuilder.add("comments", arrayCommentBuilder);
 			arrayBuilder.add(objectBuilder.build());
 		}
 		return arrayBuilder.build().toString();

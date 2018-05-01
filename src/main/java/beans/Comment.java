@@ -1,6 +1,7 @@
 package beans;
 
 import java.util.Date;
+import java.util.Random;
 
 public class Comment extends Bean{
 	private int idComment;

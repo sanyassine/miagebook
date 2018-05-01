@@ -34,6 +34,10 @@ public class PostMapper extends DataMapper{
 
 	public Post find(int idPost) {
 		if (map.containsKey(idPost)) {
+			Post post = map.get(idPost);
+			List<Comment> comments = CommentMapper.getInstance().findCommentsByPost(post);
+			post.setComment(comments);
+			map.put(idPost, post);
 			return map.get(idPost);
 		}
 		Post post = null;

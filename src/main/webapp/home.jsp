@@ -5,7 +5,7 @@
 	<head>
 		<link href="css/bootstrap.min.css" rel="stylesheet">
 		<link href="css/home.css" rel="stylesheet">
-		<script type="text/javascript" src="js/callREST.js"></script>
+		<script type="text/javascript" src="js/homeCallREST.js"></script>
 		
 		<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 		<script

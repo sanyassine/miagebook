@@ -103,8 +103,31 @@ public class PostMapper extends DataMapper{
 		return posts;
 	}
 	
+	CallableStatement findPostHomePageStatement;
+	public List<Post> findPostHomeByLogin(String login, int n){
+		List<Post> posts = new ArrayList<Post>();
+		try {
+			if(findPostHomePageStatement == null) {
+				findPostHomePageStatement = c.prepareCall("select id_post from posts " + 
+							"where (login_author in (select login_friend from friends where login_user=?) " + 
+							" OR login_author=?) AND ROWNUM <= ? " + 
+							" order by DATE_POST");	
+			}
+			findPostHomePageStatement.setString(1, login);
+			findPostHomePageStatement.setString(2, login);
+			findPostHomePageStatement.setInt(3, n);
+			ResultSet rs = findPostHomePageStatement.executeQuery();
+			while(rs.next()) {
+				int idPost = rs.getInt("id_post");
+				posts.add(find(idPost));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return posts;
+	}
+	
 	CallableStatement insertPostStatement;
-
 	public boolean insert(Post post) {
 		boolean res;
 		try {

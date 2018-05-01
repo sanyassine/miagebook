@@ -37,4 +37,24 @@ public class StatusResource {
 		}
 		return arrayBuilder.build().toString();
 	}
+	
+	@GET
+	@Path("home/user/{loginUser}")
+	@Produces("application/json")
+	public String findHomeByUser(@PathParam("loginUser") String loginUser) {
+		JsonObject json = JsonObject.EMPTY_JSON_OBJECT;
+		List<Post> posts = PostMapper.getInstance().findPostHomeByLogin(loginUser, 10);
+		JsonArrayBuilder arrayBuilder = Json.createArrayBuilder();
+		for(Post post : posts) {
+			JsonObjectBuilder objectBuilder = Json.createObjectBuilder();
+
+			objectBuilder.add("author_login", post.getAuthorLogin());
+			objectBuilder.add("content", post.getContent());
+			objectBuilder.add("datetime", post.getDate().getTime());
+			objectBuilder.add("title", post.getTitle());
+			objectBuilder.add("id_post", post.getIdPost());
+			arrayBuilder.add(objectBuilder.build());
+		}
+		return arrayBuilder.build().toString();
+	}
 }

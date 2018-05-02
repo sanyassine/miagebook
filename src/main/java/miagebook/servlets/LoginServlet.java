@@ -1,17 +1,12 @@
 package miagebook.servlets;
 
-import java.awt.SecondaryLoop;
 import java.io.IOException;
-import java.sql.Connection;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import beans.Profile;
 import beans.UserProfile;
-import persistence.ProfileMapper;
-import persistence.connection.Oracle;
 
 public class LoginServlet extends AbstractServlet {
 	

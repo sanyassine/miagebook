@@ -1,9 +1,7 @@
 package beans;
 
-import java.sql.Date;
 import java.sql.Timestamp;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
 
 public class Profile extends Bean{

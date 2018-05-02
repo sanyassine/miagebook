@@ -1,21 +1,14 @@
 package miagebook.servlets;
 
 import java.io.IOException;
-import java.sql.Timestamp;
-import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import beans.Comment;
 import beans.Post;
 import beans.UserProfile;
-import persistence.CommentMapper;
-import persistence.PostMapper;
 import services.CommentService;
 import services.PostService;
 

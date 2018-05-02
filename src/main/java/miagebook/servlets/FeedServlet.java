@@ -1,15 +1,12 @@
 package miagebook.servlets;
 
 import java.io.IOException;
-import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import beans.Profile;
 import beans.UserProfile;
-import services.FriendsService;
 
 public class FeedServlet extends AbstractServlet {
 

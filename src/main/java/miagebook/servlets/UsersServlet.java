@@ -9,7 +9,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import beans.Profile;
 import beans.UserProfile;
-import persistence.ProfileMapper;
 import services.FriendsService;
 
 public class UsersServlet extends AbstractServlet {

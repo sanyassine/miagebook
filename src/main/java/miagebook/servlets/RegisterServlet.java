@@ -1,7 +1,6 @@
 package miagebook.servlets;
    
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -10,7 +9,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.ws.rs.Path;
 
 import beans.UserProfile;
-import persistence.ProfileMapper;
 import services.RegisterService;
 
 @Path("login")

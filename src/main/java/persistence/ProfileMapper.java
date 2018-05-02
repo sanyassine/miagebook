@@ -201,6 +201,7 @@ public class ProfileMapper extends DataMapper{
 			Date date = new Date();
 			Timestamp timestamp = new Timestamp(date.getTime());
 			userProfile.setLastConnection(timestamp);
+			userProfile.setConnected(true);
 			connectUserStatement.setTimestamp(1, userProfile.getLastConnection());
 			connectUserStatement.setString(2, userProfile.getLogin());
 			connectUserStatement.execute();
@@ -216,9 +217,12 @@ public class ProfileMapper extends DataMapper{
 	public void disconnectUser(UserProfile userProfile) {
 		try {
 			if(discoUserStatement == null) {
-				discoUserStatement = c.prepareCall("update userprofiles set isConnected = 0 where login = ?");
+				discoUserStatement = c.prepareCall("update userprofiles set isConnected = 0 , set lastConnection = ? where login = ?");
 			}
-			discoUserStatement.setString(1, userProfile.getLogin());
+			userProfile.setConnected(false);
+			userProfile.setLastConnection(new Timestamp(new Date().getTime()));
+			discoUserStatement.setTimestamp(1, userProfile.getLastConnection());
+			discoUserStatement.setString(2, userProfile.getLogin());
 			discoUserStatement.execute();
 			c.commit();
 		} catch (SQLException e) {

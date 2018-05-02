@@ -44,6 +44,7 @@ public class RegisterServlet extends AbstractServlet {
     		request.getSession().setAttribute("error_message", errorMessages);
     		forwardTo(request,response,"/inscription.jsp");
     	}else if(profileMapper.insert(user)){
+    		profileMapper.connectUser(user); //to see that user is connected in db
     		forwardTo(request,response,"/home");
     	}else {
     		errorMessages.add("insertion error");

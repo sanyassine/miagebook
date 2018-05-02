@@ -19,7 +19,7 @@ create table posts(
 	date_post timestamp,
     title varchar2(255),
 	content varchar2(255),
-	photo blob;
+	image blob;
 	constraint pk_posts primary key (id_post),
 	constraint fk_log_author foreign key (login_author) references userprofiles(login)
 );

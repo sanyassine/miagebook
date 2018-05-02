@@ -1,11 +1,13 @@
 package miagebook.servlets;
 
 import java.io.IOException;
+import java.nio.file.Paths;
 import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.Part;
 
 import beans.Post;
 import beans.UserProfile;
@@ -31,6 +33,9 @@ public class HomeServlet extends AbstractServlet {
 		String contentPost = (String) request.getParameter("contentPost");
 		String titlePost   = (String) request.getParameter("titlePost");
 		String contentComment = (String) request.getParameter("contentComment");
+//		Part file = request.getPart("imagePost");
+//		String fileName = Paths.get(file.getSubmittedFileName()).getFileName().toString();
+//		System.out.println(fileName);
 		int idPostComment = getIdPostComment(request);  
 		if(contentPost != null && titlePost != null && contentPost.length() > 0 && titlePost.length() > 0) { // new post added
 			if(user != null) {

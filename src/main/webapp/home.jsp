@@ -45,6 +45,8 @@
 			<textarea placeholder="Title" class="form-control" id="exampleFormControlTextarea1" rows="1" name="titlePost"></textarea>
 		    <label for="exampleFormControlTextarea1">Write your post here</label>
 		    <textarea placeholder="Content" class="form-control" id="exampleFormControlTextarea1" rows="3" name="contentPost"></textarea>
+		    
+		    <input type="file" name="imagePost" id="filePost"/><br/>
 		    <button type="submit" value="submit" class="btn btn-primary">New Post</button>
 	  	</div>
   </form>

@@ -7,6 +7,7 @@
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 		<link href="css/bootstrap.min.css" rel="stylesheet">
 		<link href="css/login.css" rel="stylesheet">
+		<script src="js/verifOnSubmit.js"></script>
 		<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 		<script
 			src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
@@ -32,7 +33,7 @@
 				type="email" class="form-control" id="email"
 			 placeholder="Email">
 		</div>
-		<div class="form-group">
+		<div class="form-group" id="loginRegister">
 			<label>Login</label> <input name="login"
 				type="text" class="form-control" id="login"
 				placeholder="Login">

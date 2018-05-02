@@ -35,10 +35,10 @@
 		<div class="form-group">
 			<label>Login</label> <input name="login"
 				type="text" class="form-control" id="login"
-				placeholder="Password">
+				placeholder="Login">
 		</div>
 		<div class="form-group">
-			<label>Last Name</label> <input name="password"
+			<label>Password</label> <input name="password"
 				type="password" class="form-control" id="password"
 				placeholder="Password">
 		</div>

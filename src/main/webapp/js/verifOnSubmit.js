@@ -17,7 +17,7 @@ var onKeyPressed = function() {
 var response = function() {
 	if(this.readyState === XMLHttpRequest.DONE && this.status === 200) {
 		var res = JSON.parse(this.responseText);
-		if(res[0].exists == false) {
+		if(res[0].exists == true) {
 			var div = document.getElementById("loginRegister");
 			if(!document.getElementById("errorLogin")) {
 				var errorSpan = document.createElement("span");

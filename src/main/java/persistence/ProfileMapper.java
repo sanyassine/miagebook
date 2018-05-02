@@ -217,7 +217,7 @@ public class ProfileMapper extends DataMapper{
 	public void disconnectUser(UserProfile userProfile) {
 		try {
 			if(discoUserStatement == null) {
-				discoUserStatement = c.prepareCall("update userprofiles set isConnected = 0 , set lastConnection = ? where login = ?");
+				discoUserStatement = c.prepareCall("update userprofiles set isConnected = 0 , lastConnection = ? where login = ?");
 			}
 			userProfile.setConnected(false);
 			userProfile.setLastConnection(new Timestamp(new Date().getTime()));

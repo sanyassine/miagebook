@@ -35,6 +35,11 @@ public class StatusResource {
 	public String findHomeByUser(@PathParam("loginUser") String loginUser) {
 		JsonObject json = JsonObject.EMPTY_JSON_OBJECT;
 		List<Post> posts = PostMapper.getInstance().findPostHomeByLogin(loginUser, 10);
+		return createJsonArrayPosts(posts);
+	}
+	
+	public String createJsonArrayPosts(List<Post> posts) {
+		//sort posts in terms of date
 		Collections.sort(posts, new Comparator<Post>() {
 			@Override
 			public int compare(Post o1, Post o2) {
@@ -43,10 +48,6 @@ public class StatusResource {
 				else return -1;
 			}
 		});
-		return createJsonArrayPosts(posts);
-	}
-	
-	public String createJsonArrayPosts(List<Post> posts) {
 		JsonArrayBuilder arrayBuilder = Json.createArrayBuilder();
 		for(Post post : posts) {
 			JsonObjectBuilder objectBuilder = Json.createObjectBuilder();
@@ -57,9 +58,18 @@ public class StatusResource {
 			objectBuilder.add("id_post", post.getIdPost());
 			
 			JsonArrayBuilder arrayCommentBuilder = Json.createArrayBuilder();
-			for(Comment com : post.getComment()) {
+			List<Comment> comments = post.getComment();
+			//sort comments in terms of date
+			Collections.sort(comments, new Comparator<Comment>() {
+				@Override
+				public int compare(Comment p1, Comment p2) {
+					if(p1.getDate().before(p2.getDate()))
+						return 1;
+					else return -1;
+				}
+			});
+			for(Comment com : comments) {
 				JsonObjectBuilder objectCommentBuilder = Json.createObjectBuilder();
-				
 				objectCommentBuilder.add("author", com.getAuthorLogin());		
 				objectCommentBuilder.add("content", com.getContent());
 				objectCommentBuilder.add("datetime", com.getDate().getTime());

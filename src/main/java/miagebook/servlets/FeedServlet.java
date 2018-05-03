@@ -7,12 +7,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import beans.UserProfile;
+import services.CommentService;
 
 public class FeedServlet extends AbstractServlet {
 
 	 @Override
 	    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 			UserProfile user = getUserFromSession(request);
+			System.out.println("ouiiiiiiiiiiii");
 			if(user != null) { 
 				String login = request.getParameter("login");
 				request.setAttribute("login", login);
@@ -26,13 +28,26 @@ public class FeedServlet extends AbstractServlet {
 	 @Override
 	    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 			UserProfile user = getUserFromSession(request);
+			String login = request.getParameter("login");
+			request.setAttribute("login", login);
 			if(user != null) { 
-				String login = request.getParameter("login");
-				request.setAttribute("login", login);
+				String contentComment = (String) request.getParameter("contentComment");
+				int idPostComment = getIdPostComment(request);  
+				if(contentComment != null && idPostComment != -1 && contentComment.length() > 0 ) { // new comment added
+					CommentService.createComment(user, idPostComment, contentComment);
+				}
 				forwardTo(request,response,"/feed.jsp");
 			}
 			else {
 				response.sendRedirect("login");
 			}
 	 }
+		
+	private int getIdPostComment(HttpServletRequest request) {
+		try {
+			return Integer.parseInt(request.getParameter("idpostcomment")) ;
+		}catch(NumberFormatException e) {
+			return -1;
+		}
+	}
 }

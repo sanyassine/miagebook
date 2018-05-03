@@ -1,5 +1,5 @@
 var setupListeners = function() {
-	var login = provideLogin();
+	login = provideLogin();
 	if(login != undefined){
 		var xhr = new XMLHttpRequest();
 		xhr.open("GET","/SimpleServlet/rest/status/user/".concat(login)); //must be modified for all users
@@ -33,7 +33,7 @@ var response = function() {
 			a.appendChild(createContentPart(content));
 			a.appendChild(createAuthorPart(author));
 			a.appendChild(createAddCommentPart(idPost));
-			//a.appendChild(createCommentsPart(comments));
+			a.appendChild(createCommentsPart(comments));
 			
 			divAllPosts.appendChild(a);
 		}
@@ -74,7 +74,7 @@ var createAuthorPart = function(author){
 var createAddCommentPart = function(idPost){
 	var form = document.createElement("form");
 	form.method="post";
-	form.action ="home";
+	form.action ="feed?login="+login;
 	
 	var divForm = document.createElement("div");
 	divForm.className="form-group";
@@ -115,7 +115,6 @@ var createCommentsPart = function(comments){
 		var author = com.author;
 		var datetime = com.datetime;
 		var content = com.content;
-		
 		var li = document.createElement("li");
 		li.innerHTML = author.concat(" : ").concat(content).concat(" - ").concat(new Date(datetime));
 		listComment.appendChild(li);

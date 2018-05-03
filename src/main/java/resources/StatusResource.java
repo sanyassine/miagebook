@@ -25,20 +25,8 @@ public class StatusResource {
 	@Path("user/{loginUser}")
 	@Produces("application/json")
 	public String findByUser(@PathParam("loginUser") String loginUser) {
-		JsonObject json = JsonObject.EMPTY_JSON_OBJECT;
 		List<Post> posts = PostMapper.getInstance().findPostsByLogin(loginUser);
-		JsonArrayBuilder arrayBuilder = Json.createArrayBuilder();
-		for(Post post : posts) {
-			JsonObjectBuilder objectBuilder = Json.createObjectBuilder();
-
-			objectBuilder.add("author_login", post.getAuthorLogin());
-			objectBuilder.add("content", post.getContent());
-			objectBuilder.add("datetime", post.getDate().getTime());
-			objectBuilder.add("title", post.getTitle());
-			objectBuilder.add("id_post", post.getIdPost());
-			arrayBuilder.add(objectBuilder.build());
-		}
-		return arrayBuilder.build().toString();
+		return createJsonArrayPosts(posts);
 	}
 	
 	@GET
@@ -55,6 +43,10 @@ public class StatusResource {
 				else return -1;
 			}
 		});
+		return createJsonArrayPosts(posts);
+	}
+	
+	public String createJsonArrayPosts(List<Post> posts) {
 		JsonArrayBuilder arrayBuilder = Json.createArrayBuilder();
 		for(Post post : posts) {
 			JsonObjectBuilder objectBuilder = Json.createObjectBuilder();

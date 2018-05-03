@@ -7,6 +7,7 @@
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 		<link href="css/bootstrap.min.css" rel="stylesheet">
 		<link href="css/login.css" rel="stylesheet">
+		<link href="css/inscription.css" rel="stylesheet">
 		<script src="js/verifOnSubmit.js"></script>
 		<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 		<script
@@ -17,6 +18,17 @@
 	</head>
 <body>
 	<%@include  file="header_not_connected.html" %>
+	
+	<div> 
+		<%List<String> errorMessages = (List<String>)request.getSession().getAttribute("error_message"); %>
+	
+	<% if(errorMessages != null){
+		for(String msg : errorMessages){%>
+		<span class ="incorrect-field"><%out.print(msg);%></span><br/><%
+	}errorMessages.clear();}%>
+	</div>
+	
+	<div>
 	<form method="post" class="form-signin">
 		<div class="form-group">
 			<label>First Name</label> <input name="firstname"
@@ -46,12 +58,7 @@
 		
 		<button type="submit" class="btn btn-primary">Submit</button>
 	</form>
-	
-	<%List<String> errorMessages = (List<String>)request.getSession().getAttribute("error_message"); %>
-	
-	<% if(errorMessages != null){
-		for(String msg : errorMessages){
-		out.print(msg);
-	}errorMessages.clear();}%>
+	</div>
+
 </body>
 </html>

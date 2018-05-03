@@ -1,6 +1,6 @@
 var setupListeners = function() {
 	var inputLogin = document.getElementById("login");
-	inputLogin.addEventListener("input",onKeyPressed);
+	inputLogin.addEventListener("keyup",onKeyPressed);
 }
 
 

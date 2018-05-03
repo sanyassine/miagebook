@@ -1,0 +1,8 @@
+#errorLogin {
+	color: red;
+}
+
+.incorrect-field {
+	font-style:italic; 
+	color:red;
+}

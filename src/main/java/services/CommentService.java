@@ -3,6 +3,8 @@ package services;
 import java.sql.Timestamp;
 import java.util.Date;
 
+import javax.servlet.http.HttpServletRequest;
+
 import beans.Comment;
 import beans.Profile;
 import persistence.CommentMapper;
@@ -16,5 +18,13 @@ public class CommentService {
 		comment.setIdPost(idPost);
 		comment.setDate(new Timestamp(new Date().getTime()));
 		commentMapper.insert(comment);
+	}
+	
+	public static int getIdPostComment(HttpServletRequest request) {
+		try {
+			return Integer.parseInt(request.getParameter("idpostcomment")) ;
+		}catch(NumberFormatException e) {
+			return -1;
+		}
 	}
 }

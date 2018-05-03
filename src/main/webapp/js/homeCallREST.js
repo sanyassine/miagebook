@@ -26,8 +26,6 @@ var response = function() {
 			var idPost   = res[i].id_post;
 			var comments = res[i].comments;
 			
-			alert(comments);
-			
 			var a = document.createElement("a");
 			a.className = "list-group-item list-group-item-action flex-column align-items-start";
 			

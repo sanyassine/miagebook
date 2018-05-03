@@ -36,7 +36,7 @@ public class HomeServlet extends AbstractServlet {
 //		Part file = request.getPart("imagePost");
 //		String fileName = Paths.get(file.getSubmittedFileName()).getFileName().toString();
 //		System.out.println(fileName);
-		int idPostComment = getIdPostComment(request);  
+		int idPostComment = CommentService.getIdPostComment(request);  
 		if(contentPost != null && titlePost != null && contentPost.length() > 0 && titlePost.length() > 0) { // new post added
 			if(user != null) {
 				PostService.createPost(user, contentPost, titlePost);
@@ -46,13 +46,4 @@ public class HomeServlet extends AbstractServlet {
 		}
 		response.sendRedirect("home");
 	}
-	
-	private int getIdPostComment(HttpServletRequest request) {
-		try {
-			return Integer.parseInt(request.getParameter("idpostcomment")) ;
-		}catch(NumberFormatException e) {
-			return -1;
-		}
-	}
-
 }

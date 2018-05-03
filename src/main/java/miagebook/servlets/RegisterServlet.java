@@ -18,9 +18,11 @@ public class RegisterServlet extends AbstractServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) 
         throws ServletException, IOException {
-    	if(request.getSession().getAttribute("user") != null)
+    	if(request.getSession().getAttribute("user") != null) {
+    		System.out.println("oui1");
     		//forwardTo(request,response,"/home");
     		response.sendRedirect("home");
+    	}
     	else
     		forwardTo(request, response, "/inscription.jsp");// methode ecrite dans AbstractServlet pour simplfier
     }
@@ -33,15 +35,14 @@ public class RegisterServlet extends AbstractServlet {
     	String firstName = request.getParameter("firstname");
     	String lastName = request.getParameter("lastname");
     	String email = request.getParameter("email");
-    	
     	UserProfile user = RegisterService.register(login, password, firstName, lastName, email);
-    	setUserInSession(request, user);
     	List<String> errorMessages = RegisterService.checkData(login,password,firstName,lastName,email);
     	// verifier en base si l'email/login existe deja ou non
     	if(errorMessages.size() != 0) {
     		request.getSession().setAttribute("error_message", errorMessages);
     		forwardTo(request,response,"/inscription.jsp");
     	}else if(profileMapper.insert(user)){
+        	setUserInSession(request, user);
     		profileMapper.connectUser(user); //to see that user is connected in db
     		forwardTo(request,response,"/home");
     	}else {

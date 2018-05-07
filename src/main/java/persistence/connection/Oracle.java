@@ -17,7 +17,7 @@ public class Oracle {
 	        try{
 	        Class.forName("oracle.jdbc.driver.OracleDriver").newInstance(); 
 	        c = DriverManager.getConnection("jdbc:oracle:thin:@oracle.fil.univ-lille1.fr:1521:filora",
-	        	null,null); // put login and password
+	        	"SANSAOUI","mamaroula007"); // put login and password
 	        c.setAutoCommit(false);
 	        }
 	        catch(Exception e){

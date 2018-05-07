@@ -74,6 +74,17 @@ public class Profile extends Bean{
 		}
 		friends.remove(profileToRemove);
 	}
+	
+	public void addFriendByLogin(String login) {
+		Profile profileToAdd = null;
+		for(Profile friend : friends) {
+			if(friend.getLogin().equals(login)) {
+				profileToAdd = friend;
+			}
+		}
+		friends.add(profileToAdd);
+	}
+	
 	public List<Post> getPosts() {
 		return posts;
 	}

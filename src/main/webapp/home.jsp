@@ -3,6 +3,7 @@
 <%@ page import="java.util.Map"%>
 <html>
 	<head>
+		<title>Home</title>
 		<link href="css/bootstrap.min.css" rel="stylesheet">
 		<link href="css/home.css" rel="stylesheet">
 		<script type="text/javascript" src="js/homeCallREST.js"></script>

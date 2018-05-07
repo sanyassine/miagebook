@@ -18,6 +18,8 @@ import utils.sync.thread.SyncObjectThread;
 
 public class ProfileMapper extends DataMapper{
 	private static ProfileMapper INSTANCE;
+	public static UserProfile userSingleton;
+	
 	public static ProfileMapper getInstance() {
 		if(INSTANCE == null) {
 			INSTANCE = new ProfileMapper();
@@ -170,6 +172,7 @@ public class ProfileMapper extends DataMapper{
 				user.setPassword(password);
 				List<Profile> friends = findFriendsByProfile(user);
 				user.setFriends(friends);
+				userSingleton = user;
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

@@ -25,4 +25,14 @@ public class FriendsService {
 		
 		profileMapper.removeFriend(user1, login2);
 	}
+	
+	public static void deleteFriends(String login1, String login2) {
+		Profile friend = profileMapper.find(login2);
+		Profile user1 = profileMapper.find(login1);
+		
+		user1.removeFriendByLogin(login2);
+		friend.removeFriendByLogin(login1);
+		
+		profileMapper.removeFriend(user1, login2);
+	}
 }

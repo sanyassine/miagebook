@@ -23,15 +23,17 @@ public class FriendsResource {
 		JsonObject json = JsonObject.EMPTY_JSON_OBJECT;
 		JsonArrayBuilder arrayBuilder = Json.createArrayBuilder();
 		JsonObjectBuilder objectBuilder = Json.createObjectBuilder();
-		Profile userProfile = ProfileMapper.getInstance().find(user);
+//		Profile userProfile = ProfileMapper.getInstance().find(user);
 		Profile friendProfile = ProfileMapper.getInstance().find(friend);
-		if(userProfile.getFriends().contains(friendProfile)) {
-			FriendsService.deleteFriends(userProfile, friend);
+		if(ProfileMapper.userSingleton.getFriends().contains(friendProfile)) {
+			FriendsService.deleteFriends(ProfileMapper.userSingleton, friend);
 			objectBuilder.add("add_friend",false);
+			ProfileMapper.userSingleton.addFriendByLogin(friend);
 		}
 		else {
-			FriendsService.makeFriends(userProfile, friend);
+			FriendsService.makeFriends(ProfileMapper.userSingleton, friend);
 			objectBuilder.add("add_friend",true);
+			ProfileMapper.userSingleton.removeFriendByLogin(friend);
 		}
 		objectBuilder.add("loginFriend",friend);
 		arrayBuilder.add(objectBuilder);

@@ -84,5 +84,9 @@
 		<servlet-name>feedServlet</servlet-name>
 		<url-pattern>/feed</url-pattern>
 	</servlet-mapping>
+	
+	<error-page>
+		<location>/general-error.html</location>
+	</error-page>
 
 </web-app>

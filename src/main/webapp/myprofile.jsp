@@ -9,10 +9,13 @@
 			src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 		<!-- Include all compiled plugins (below), or include individual files as needed -->
 		<script src="js/bootstrap.min.js"></script>
+		<!-- <script src="js/friends.js"></script> -->
 	</head>
 <body>
 	<%@include  file="header_connected.html" %>
     <main role="main" class="container">
+    
+    
 	<h1>My profile</h1>
 	
 	
@@ -24,6 +27,7 @@
 		String lName = user.getLastName();
 		String email = user.getEmail();
 	%>
+	<span id="login_data" class="invisible"><% out.print(login);%></span>
 	
 	<h3>First name: <% out.print(fName); %></h3>
 	<h3>Last name:  <% out.print(lName);%></h3>
@@ -37,15 +41,15 @@
 			<li class="list-group-item"><%out.print(p.getLogin()); %>
 			
 				<% if (user.isFriendsWith(p.getLogin())){ %>
-					<form method="post" action="myprofile">
+					 <form method="post" action="myprofile"> 
 						<input type="hidden" type="text" name="loginRemove" value="<% out.print(p.getLogin()); %>">
-						<button type="submit" value="submit">remove from friends</button>
-					</form>
+						<button type="submit" value="submit" id="<%out.print(p.getLogin());%>">remove from friends</button>
+					 </form>
 				<% }else{ %>
-					<form method="post" action="myprofile">
+					<form method="post" action="myprofile"> -->
 						<input type="hidden" type="text" name="loginAdd" value="<% out.print(p.getLogin()); %>">
-						<button type="submit" value="submit">add to friends</button>
-					</form>
+						<button type="submit" value="submit" id="<%out.print(p.getLogin());%>">add to friends</button>
+					</form>> 
 				<% }
 				%>
 			</li>

@@ -22,11 +22,11 @@ var response = function() {
 		var btn = document.getElementById(res[0].loginFriend);
 		var bool = res[0].add_friend;
 		if(bool == false) {
-			btn.innerHTML = "add from friend";
+			btn.innerHTML = "add to friends";
 			
 		}
 		else if(bool == true) {
-			btn.innerHTML = "remove from friend";
+			btn.innerHTML = "remove from friends";
 		}
 	}
 }
